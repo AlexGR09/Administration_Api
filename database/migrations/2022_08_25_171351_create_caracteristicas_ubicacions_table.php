@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Paquetes extends Migration
+class CreateCaracteristicasUbicacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class Paquetes extends Migration
      */
     public function up()
     {
-        Schema::create('paquetes', function (Blueprint $table) {
+        Schema::create('caracteristicas_ubicacions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->float('amount',8,2);
-            
+            $table->timestamps();
         });
     }
 
@@ -28,6 +26,6 @@ class Paquetes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('caracteristicas_ubicacions');
     }
 }
