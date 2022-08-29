@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCiudadsTable extends Migration
+class CreateCiudadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,20 @@ class CreateCiudadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ciudads', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ciudades', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+
+            $table->unsignedBigInteger('estado_id')->nullable();
+            $table->unsignedBigInteger('pais_id')->nullable();
+
+            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('estado_id')->references('id')->on('estados');
+
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

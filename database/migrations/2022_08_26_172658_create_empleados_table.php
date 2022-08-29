@@ -14,8 +14,16 @@ class CreateEmpleadosTable extends Migration
     public function up()
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('user_id')->nullable;
+
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

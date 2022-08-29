@@ -13,9 +13,14 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('_roles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->enum('Rol',array('Gerencia', 'Administracion', 'Contabilidad', 'Ventas', 'Cliente', 'Root'));
+            
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
