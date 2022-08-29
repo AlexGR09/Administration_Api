@@ -14,8 +14,24 @@ class CreateDocumentacionesTable extends Migration
     public function up()
     {
         Schema::create('documentaciones', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('INE',200);
+            $table->string('Cedula',200);
+            $table->string('Titulo',200);
+            $table->string('ComrpobanteDomicilio',200);
+            $table->string('ConstanciaFiscal',200);
+            $table->string('Certificados',200);
+
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->unsignedBigInteger('info_fiscal_id')->nullable();
+
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales');
+
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
