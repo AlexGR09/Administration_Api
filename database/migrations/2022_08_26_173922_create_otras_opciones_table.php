@@ -14,8 +14,14 @@ class CreateOtrasOpcionesTable extends Migration
     public function up()
     {
         Schema::create('otras_opciones', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('TextoNuevo');
+            $table->string('TablaOrigen');
+            
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

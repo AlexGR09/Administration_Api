@@ -14,8 +14,21 @@ class CreateCaracteristicasUbicacionesTable extends Migration
     public function up()
     {
         Schema::create('caracteristicas_ubicaciones', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('Turno');
+            $table->integer('PromedioPacientes');
+            $table->integer('CapacidadMaxima');
+            $table->string('NivelCompetencia');
+            $table->integer('PrecioConsultaCompetencia');
+
+            $table->unsignedBigInteger('ubicacion_id')->nullable();
+
+            $table->foreign('ubicacion_id')->references('id')->on('ubicaciones');
+
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

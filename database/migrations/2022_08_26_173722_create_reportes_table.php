@@ -14,8 +14,14 @@ class CreateReportesTable extends Migration
     public function up()
     {
         Schema::create('reportes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->date('Fecha');
+            $table->float('MontoTotal');
+
+            $table->unsignedBigInteger('creadopor_id')->nullable();
+            $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

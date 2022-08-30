@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContenidoPaquetesTable extends Migration
+class CreatePaquetesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateContenidoPaquetesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contenido_paquetes', function (Blueprint $table) {
+        Schema::create('paquetes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Descripcion');
-
-            $table->unsignedBigInteger('paquete_id')->nullable();
-            $table->unsignedBigInteger('servicio_id')->nullable();
-
-            $table->foreign('paquete_id')->references('id')->on('paquetes');
-            $table->foreign('servicio_id')->references('id')->on('servicios');
-
+            $table->string('NombrePaquete');
+            $table->float('CostoPaquete');
+            
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
@@ -37,6 +32,6 @@ class CreateContenidoPaquetesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contenido_paquetes');
+        Schema::dropIfExists('paquetes');
     }
 }
