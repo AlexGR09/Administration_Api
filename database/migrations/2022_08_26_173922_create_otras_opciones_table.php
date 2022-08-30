@@ -17,14 +17,13 @@ class CreateOtrasOpcionesTable extends Migration
             $table->bigIncrements('id');
             $table->string('TextoNuevo');
             $table->string('TablaOrigen');
-            
+
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
-
     /**
      * Reverse the migrations.
      *
