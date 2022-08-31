@@ -13,7 +13,7 @@ class Paquete extends Model
         return $this->hasMany(Pago::class);
     }
 
-    public function Paquetes(){
+    public function Paquete(){
         return $this->belongsTo(Paquete::class);
     }
 }
