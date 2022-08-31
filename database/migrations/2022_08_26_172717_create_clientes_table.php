@@ -19,6 +19,7 @@ class CreateClientesTable extends Migration
             $table->string('Foto',100);
             $table->string('CURP',18);
             $table->enum('TipoTelefono',array('Movil','Casa','Oficina'));
+            $table->bigInteger('TelefonoCliente');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('especialidad_id')->nullable();

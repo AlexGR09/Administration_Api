@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('Nombre');
             $table->string('ApellidoPaterno');
             $table->string('ApellidoMaterno');
-            $table->integer('TeléfonoPersonal');
+            $table->bigInteger('TeléfonoPersonal');
             $table->date('FechaNacimiento');
             $table->integer('Edad');
             $table->string('Genero');
