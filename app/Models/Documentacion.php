@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Documentacion extends Model
 {
     use HasFactory;
+
+    public function InfoFiscal(){
+        return $this->belongsTo(InfoFiscal::class);
+    }
 }

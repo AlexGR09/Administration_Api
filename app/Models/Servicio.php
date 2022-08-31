@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Servicio extends Model
 {
     use HasFactory;
+
+    public function ContenidoPaquete(){
+        return $this->hasMany(ContenidoPaquete::class);
+    }
 }

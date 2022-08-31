@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class RedSocial extends Model
 {
     use HasFactory;
+
+    public function Cliente(){
+        return $this->belongsTo(liente::class);
+    }
 }

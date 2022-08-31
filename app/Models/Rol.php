@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Rol extends Model
 {
     use HasFactory;
+
+    public function RolUsuario(){
+        return $this->hasMany(RolUsuario::class);
+    }
 }

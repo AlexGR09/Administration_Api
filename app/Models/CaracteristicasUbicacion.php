@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CaracteristicasUbicacion extends Model
 {
     use HasFactory;
+
+    public function Ubicacion(){
+        return $this->belongsTo(Ubicacion::class);
+    }
 }
