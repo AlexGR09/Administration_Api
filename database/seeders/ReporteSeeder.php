@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ReporteSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class ReporteSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('reportes')->insert([
+            [
+                'id'=>1,
+                'Fecha'=>time(),
+                'MontoTotal'=>1000,
+            ],
+        ]);
     }
 }

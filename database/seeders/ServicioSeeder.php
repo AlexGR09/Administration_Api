@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ServicioSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class ServicioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('servicios')->insert([
+            [
+                'id'=>1,
+                'NombreServicio'=>'Servicio1',
+                'CostoServicio'=>400,
+            ],
+        ]);
     }
 }
