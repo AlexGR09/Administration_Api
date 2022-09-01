@@ -17,8 +17,8 @@ class PaqueteSeeder extends Seeder
         DB::table('paquetes')->insert([
             [
                 'id'=>1,
-                'NombrePaquete'=>'paquete 1',
-                'CostoPaquete'=>2000,
+                'nombrepaquete'=>'paquete 1',
+                'costopaquete'=>2000,
             ],
         ]);
     }

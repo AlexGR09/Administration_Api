@@ -18,7 +18,7 @@ class CreateDocumentacionesTable extends Migration
             $table->string('ine',200);
             $table->string('cedula',200);
             $table->string('titulo',200);
-            $table->string('comrpobantedomicilio',200);
+            $table->string('comprobantedomicilio',200);
             $table->string('constanciafiscal',200);
             $table->string('certificados',200);
 

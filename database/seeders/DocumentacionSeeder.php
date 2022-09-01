@@ -17,12 +17,12 @@ class DocumentacionSeeder extends Seeder
         DB::table('documentaciones')->insert([
             [
                 'id'=>1,
-                'INE'=>'Aqui va una foto',
-                'Cedula'=>'Aqui va la cedula',
-                'Titulo'=>'Aqui va la foto del titulo',
-                'ComporbanteDomicilio'=>'Foto del comprobante de domicilio',
-                'ConstanciaFiscal'=>'Foto de la constancia fiscal',
-                'Certificados'=>'Foto de cualquier certificado que tengan',
+                'ine'=>'Aqui va una foto',
+                'cedula'=>'Aqui va la cedula',
+                'titulo'=>'Aqui va la foto del titulo',
+                'comprobantedomicilio'=>'Foto del comprobante de domicilio',
+                'constanciafiscal'=>'Foto de la constancia fiscal',
+                'certificados'=>'Foto de cualquier certificado que tengan',
                 'cliente_id'=>1,
                 'info_fiscal_id'=>1,
             ],

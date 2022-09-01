@@ -20,11 +20,11 @@ class CaracteristicasUbicacionSeeder extends Seeder
         DB::table('caracteristicas_ubicaciones')->insert([
             [
                 'id'=>1,
-                'Turno'=>'Matutino',
-                'PromedioPacientes'=>60,
-                'CapacidadMaxima'=>100,
-                'NivelCompetencia'=>'Alta',
-                'PrecioConsultaCompetencia'=>500,
+                'turno'=>'matutino',
+                'promediopacientes'=>60,
+                'capacidadmaxima'=>100,
+                'nivelcompetencia'=>'Alta',
+                'precioconsultacompetencia'=>500,
                 'ubicacion_id'=>1,
             ],
         ]);

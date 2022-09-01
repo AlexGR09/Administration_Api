@@ -17,19 +17,19 @@ class EspecialidadSeeder extends Seeder
         DB::table('especialidades')->insert([
             [
                 'id'=>1,
-                'Especialidad'=>'Cardiología',
+                'especialidad'=>'Cardiología',
             ],
             [
                 'id'=>2,
-                'Especialidad'=>'Psiquiatría',
+                'especialidad'=>'Psiquiatría',
             ],
             [
                 'id'=>3,
-                'Especialidad'=>'Algología',
+                'especialidad'=>'Algología',
             ],
             [
                 'id'=>4,
-                'Especialidad'=>'Urología',
+                'especialidad'=>'Urología',
             ],
         ]);
     }

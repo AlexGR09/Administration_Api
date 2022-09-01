@@ -17,8 +17,8 @@ class ServicioSeeder extends Seeder
         DB::table('servicios')->insert([
             [
                 'id'=>1,
-                'NombreServicio'=>'Servicio1',
-                'CostoServicio'=>400,
+                'nombreservicio'=>'Servicio1',
+                'costoservicio'=>400,
             ],
         ]);
     }

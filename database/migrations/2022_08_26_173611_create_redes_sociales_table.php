@@ -18,7 +18,7 @@ class CreateRedesSocialesTable extends Migration
             $table->string('tipo');
             $table->string('url',200);
             $table->string('usuario');
-            $table->string('contraseña');
+            $table->string('password');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
 

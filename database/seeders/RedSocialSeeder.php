@@ -17,10 +17,10 @@ class RedSocialSeeder extends Seeder
         DB::table('redes_sociales')->insert([
             [
                 'id'=>1,
-                'Tipo'=>'Facebook',
-                'URL'=>'Aqui va un URL',
-                'Usuario'=>'Usuario1',
-                'Contraseña'=>'Contraseña',
+                'tipo'=>'Facebook',
+                'url'=>'Aqui va un URL',
+                'usuario'=>'Usuario1',
+                'password'=>'Contraseña',
                 'cliente_id'=>1
             ],
         ]);

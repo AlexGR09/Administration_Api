@@ -17,7 +17,7 @@ class ContenidoPaqueteSeeder extends Seeder
         DB::table('contenido_paquetes')->insert([
             [
                 'id'=>1,
-                'Descripcion'=>'Esto es el paquete',
+                'descripcion'=>'Esto es el paquete',
                 'paquete_id'=>1,
                 'servicio_id'=>1,
             ],
