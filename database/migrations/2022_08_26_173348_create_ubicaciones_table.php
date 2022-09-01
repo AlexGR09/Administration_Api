@@ -20,9 +20,9 @@ class CreateUbicacionesTable extends Migration
             $table->string('COFEPRISFunc');
             $table->string('COFEPRISPubli');
             $table->string('Email');
-            $table->integer('TelefonoCitas');
+            $table->bigInteger('TelefonoCitas');
             $table->string('TipoTelefono');
-            $table->integer('TelefonoEmergencias');
+            $table->bigInteger('TelefonoEmergencias');
             $table->string('ImagenUbicacion');
             $table->string('TipoVialidad');
             $table->string('NombreVialidad');

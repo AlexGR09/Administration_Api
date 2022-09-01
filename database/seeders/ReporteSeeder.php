@@ -17,7 +17,7 @@ class ReporteSeeder extends Seeder
         DB::table('reportes')->insert([
             [
                 'id'=>1,
-                'Fecha'=>time(),
+                'Fecha'=>'2022-08-22',
                 'MontoTotal'=>1000,
             ],
         ]);

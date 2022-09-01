@@ -19,7 +19,7 @@ class CreateReportePagosTable extends Migration
             $table->foreignId('reporte_id')->references('id')->on('reportes');
             $table->foreignId('pago_id')->references('id')->on('pagos');
             $table->foreignId('info_fiscal_id')->references('id')->on('pagos');
-            $table->foreignId('cliente->id')->references('id')->on('pagos');
+            $table->foreignId('cliente_id')->references('id')->on('pagos');
             $table->foreignId('paquete_id')->references('id')->on('pagos');
 
             $table->unsignedBigInteger('creadopor_id')->nullable();

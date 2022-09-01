@@ -24,5 +24,15 @@ class DatabaseSeeder extends Seeder
         $this->call(ClienteSeeder::class);
         $this->call(FreelancerSeeder::class);
         $this->call(InfoFiscalSeeder::class);
+        $this->call(InfoPublicitariaSeeder::class);
+        $this->call(RedSocialSeeder::class);
+        $this->call(PaqueteSeeder::class);
+        $this->call(PagoSeeder::class);
+        $this->call(ReporteSeeder::class);
+        $this->call(ReportePagoSeeder::class);
+        $this->call(ServicioSeeder::class);
+        $this->call(ContenidoPaqueteSeeder::class);
+        $this->call(UbicacionSeeder::class);
+        $this->call(CaracteristicasUbicacionSeeder::class);
     }
 }
