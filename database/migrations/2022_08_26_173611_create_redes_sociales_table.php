@@ -14,11 +14,11 @@ class CreateRedesSocialesTable extends Migration
     public function up()
     {
         Schema::create('redes_sociales', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('Tipo');
-            $table->string('URL',200);
-            $table->string('Usuario');
-            $table->string('Contraseña');
+            $table->id();
+            $table->string('tipo');
+            $table->string('url',200);
+            $table->string('usuario');
+            $table->string('contraseña');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
 

@@ -14,11 +14,11 @@ class CreatePagosTable extends Migration
     public function up()
     {
         Schema::create('pagos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->enum('MetodoPago',array('Paypal', 'Tarjeta de crèdito', 'Tarjeta de dèbito', 'Cheque', 'Transferencia'));
-            $table->date('FechaPago');
-            $table->enum('PeriodosTiempo',array('Mensual','Bimestral','Trimestral','Anual'));
-            $table->float('Monto');
+            $table->id();
+            $table->enum('metodopago',array('paypal', 'tarjeta de credito', 'tarjeta de debito', 'cheque', 'transferencia'));
+            $table->date('fechapago');
+            $table->enum('periodostiempo',array('mensual','bimestral','trimestral','anual'));
+            $table->float('monto');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->unsignedBigInteger('info_fiscal_id')->nullable();

@@ -14,7 +14,7 @@ class CreateEmpleadosTable extends Migration
     public function up()
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             $table->unsignedBigInteger('user_id')->nullable;
 

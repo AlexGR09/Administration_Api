@@ -14,13 +14,13 @@ class CreateInfoPublicitariasTable extends Migration
     public function up()
     {
         Schema::create('info_publicitarias', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('Logotipo',200);
-            $table->string('Tipografia',200);
-            $table->string('PaletaColores',100);
-            $table->string('LlamadaConsulta',300);
-            $table->string('InvitacionSitio',300);
-            $table->string('DatosConsulta',300);
+            $table->id();
+            $table->string('logotipo',200);
+            $table->string('tipografia',200);
+            $table->string('paletacolores',100);
+            $table->string('llamadaconsulta',300);
+            $table->string('invitacionsitio',300);
+            $table->string('datosconsulta',300);
 
             $table->unsignedBigInteger('cliente_id')->nullable();
 

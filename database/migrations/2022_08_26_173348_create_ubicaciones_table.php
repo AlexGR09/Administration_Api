@@ -15,22 +15,22 @@ class CreateUbicacionesTable extends Migration
     {
         Schema::create('ubicaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('Tipo');
-            $table->string('NombreUbicaciones');
-            $table->string('COFEPRISFunc');
-            $table->string('COFEPRISPubli');
-            $table->string('Email');
-            $table->bigInteger('TelefonoCitas');
-            $table->string('TipoTelefono');
-            $table->bigInteger('TelefonoEmergencias');
-            $table->string('ImagenUbicacion');
-            $table->string('TipoVialidad');
-            $table->string('NombreVialidad');
-            $table->string('NumeroExterior');
-            $table->string('NumeroInterior');
-            $table->string('TipoColonia');
-            $table->string('NombreColonia');
-            $table->integer('CP');
+            $table->string('tipo');
+            $table->string('nombreubicaciones');
+            $table->string('cofeprisfunc');
+            $table->string('cofeprispubli');
+            $table->string('email');
+            $table->bigInteger('telefonocitas');
+            $table->string('tipotelefono');
+            $table->bigInteger('telefonoemergencias');
+            $table->string('imagenubicacion');
+            $table->string('tipovialidad');
+            $table->string('nombrevialidad');
+            $table->string('numeroexterior');
+            $table->string('numerointerior');
+            $table->string('tipocolonia');
+            $table->string('nombrecolonia');
+            $table->integer('cp');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->unsignedBigInteger('info_fiscal_id')->nullable();

@@ -14,12 +14,12 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('Titulo');
-            $table->string('Foto',100);
-            $table->string('CURP',18);
-            $table->enum('TipoTelefono',array('Movil','Casa','Oficina'));
-            $table->bigInteger('TelefonoCliente');
+            $table->id();
+            $table->string('titulo');
+            $table->string('foto',100);
+            $table->string('curp',18);
+            $table->enum('tipotelefono',array('movil','casa','oficina'));
+            $table->bigInteger('telefonocliente');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('especialidad_id')->nullable();

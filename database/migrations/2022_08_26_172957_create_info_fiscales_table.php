@@ -14,16 +14,16 @@ class CreateInfoFiscalesTable extends Migration
     public function up()
     {
         Schema::create('info_fiscales', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('RazonSocial',150);
-            $table->string('RFC',13);
-            $table->string('TipoVialidad');
-            $table->string('NombreVialidad');
-            $table->string('NumeroExterior',10);
-            $table->string('NumeroInterior',10);
-            $table->string('TipoColonia');
-            $table->string('NombreColonia');
-            $table->integer('CP');
+            $table->id();
+            $table->string('razonsocial',150);
+            $table->string('rfc',13);
+            $table->string('tipovialidad');
+            $table->string('nombrevialidad');
+            $table->string('numeroexterior',10);
+            $table->string('numerointerior',10);
+            $table->string('tipocolonia');
+            $table->string('nombrecolonia');
+            $table->integer('cp');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->unsignedBigInteger('ciudad_id')->nullable();

@@ -14,8 +14,8 @@ class CreateContenidoPaquetesTable extends Migration
     public function up()
     {
         Schema::create('contenido_paquetes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('Descripcion');
+            $table->id();
+            $table->string('descripcion');
 
             $table->unsignedBigInteger('paquete_id')->nullable();
             $table->unsignedBigInteger('servicio_id')->nullable();
