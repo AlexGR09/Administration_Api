@@ -4,12 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Empleado extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
+
+    protected $table = 'empleados';
+    public $timestamps = true;
+
+    protected $dates = ['deleted_at'];
+    protected $fillable = array('user_id','creadopor','actualizadopor');
 
     public function User(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -4,20 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pago extends Model
 {
-    use HasFactory;
+    use SoftDeletes, HasFactory;
+
+    protected $table = 'pagos';
+    public $timestamps = true;
+
+    protected $dates = ['deleted_at'];
+    protected $fillable = array('metodopago','fechapago','periodostiempo','monto','cliente_id','info_fiscal_id','paquete_id','creadopor','actualizadopor');
 
     public function ReportePago(){
-        return $this->hasMany(ReportePago::class);
+        return $this->hasMany('App\Models\ReportePago');
     }
 
     public function InfoFiscal(){
-        return $this->belongsTo(InfoFiscal::class);
+        return $this->belongsTo('App\Models\InfoFiscal');
     }
 
     public function Paquete(){
-        return $this->belongsTo(Paquete::class);
+        return $this->belongsTo('App\Models\Paquete');
     }
 }
