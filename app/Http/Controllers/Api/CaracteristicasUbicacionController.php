@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RolController extends Controller
+class CaracteristicasUbicacionController extends Controller
 {
     /**
      * Display a listing of the resource.
