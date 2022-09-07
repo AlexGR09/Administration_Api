@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EspecialidadResource;
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
 
@@ -20,16 +21,6 @@ class EspecialidadController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +28,8 @@ class EspecialidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $especialidad = Especialidad::create($request->validated());
+        return new Especialidad($especialidad);
     }
 
     /**
@@ -46,20 +38,9 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Especialidad $especialidad)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return new EspecialidadResource($especialidad);
     }
 
     /**
@@ -69,9 +50,10 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Especialidad $especialidad)
     {
-        //
+        $especialidad->update($request->validated());
+        return new EspecialidadResource($especialidad);
     }
 
     /**
@@ -80,8 +62,9 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Especialidad $especialidad)
     {
-        //
+        $especialidad->delete();
+        return response()->noContent();
     }
 }
