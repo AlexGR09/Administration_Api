@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
-class RedSocialController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        $cliente= Cliente::where("user_id", $user_id)->get();
+
+        return response()->json([
+            "status" => 1,
+            "msg" => "Cliente",
+            "data" => $cliente
+        ]);
     }
 
     /**
@@ -22,9 +30,27 @@ class RedSocialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            "titulo" => "required",
+            "foto" => "required",
+            "curp" => "required",
+            "tipotelefono" => "required",
+            "telefonocliente" => "required",
+            "titulo" => "required"
+        ]);
+
+        $user_id = auth()->user()->id;
+        $cliente = new Cliente();
+        $cliente->user_id = $user_id;
+        $cliente->cliente = $request->cliente;
+        $cliente->save();
+
+        return response([
+            "status" => 1,
+            "msg" =>"Cliente registrado"
+        ]);
     }
 
     /**

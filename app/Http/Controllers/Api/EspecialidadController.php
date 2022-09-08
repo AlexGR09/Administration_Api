@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\EspecialidadResource;
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
 
@@ -14,22 +13,39 @@ class EspecialidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $especialidad = Especialidad::all();
-        return $especialidad;
+        $user_id = auth()->user()->id;
+        $especialidad= Especialidad::where("user_id", $user_id)->get();
+
+        return response()->json([
+            "status" => 1,
+            "msg" => "Especialidad",
+            "data" => $especialidad
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        $especialidad = Especialidad::create($request->validated());
-        return new Especialidad($especialidad);
+        $request->validate([
+            "especiaidad" => "required",
+        ]);
+
+        $user_id = auth()->user()->id;
+        $especialidad = new Especialidad();
+        $especialidad->user_id = $user_id;
+        $especialidad->especialidad = $request->especialidad;
+        $especialidad->save();
+
+        return response([
+            "status" => 1,
+            "msg" =>"Especialidad creada"
+        ]);
     }
 
     /**
@@ -38,9 +54,23 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Especialidad $especialidad)
+    public function show($id)
     {
-        return new EspecialidadResource($especialidad);
+        $user_id = auth()->user()->id;
+        if(Especialidad::where(["id"=>$id, "user_id"=>$user_id])->exists()){
+            $info = Especialidad::where(["id" => $id, "user_id" => $user_id])->get();
+
+            return response()->json([
+                "status" => 1,
+                "msg" => "Existe esa especialidad",
+                "msg" => $info,
+            ], 404);
+        }else{
+            return response()->json([
+                "Status" => 1,
+                "msg" => "No existeee"
+            ], 404);
+        }
     }
 
     /**
@@ -50,10 +80,24 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Especialidad $especialidad)
+    public function update(Request $request, $id)
     {
-        $especialidad->update($request->validated());
-        return new EspecialidadResource($especialidad);
+        $user_id= auth()->user()->id;
+        if(Especialidad::where(["id" => $id, "user_id" => $user_id])->exists()){
+            $especialidad = Especialidad::find($id);
+            $especialidad->isset($request->especialidad) ? $request->especialidad : $especialidad->especialidad;
+            $especialidad->save();
+
+            return response()->json([
+                "status" => 1,
+                "msg" => "Especialidad actualizada",
+            ], 404);
+        }else{
+            return response()->json([
+                "Status" => 1,
+                "msg" => "No existeee"
+            ], 404);
+        }
     }
 
     /**
@@ -62,9 +106,21 @@ class EspecialidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Especialidad $especialidad)
+    public function destroy($id)
     {
-        $especialidad->delete();
-        return response()->noContent();
+        $user_id= auth()->user()->id;
+        if(Especialidad::where(["id" => $id, "user_id" => $user_id])->exists()){
+            $especialidad = Especialidad::where(["id" => $id, "user_id" => $user_id])->first();
+            $especialidad->delete();
+            return response()->json([
+                "status" => 1,
+                "msg" => "Especialidad eliminada",
+            ]);
+        }else{
+            return response()->json([
+                "Status" => 0,
+                "msg" => "No se encontró dicha especialidad"
+            ], 404);
+        }
     }
 }
