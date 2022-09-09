@@ -18,7 +18,7 @@ class CreateFreelancersTable extends Migration
 
             $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

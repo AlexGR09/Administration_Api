@@ -28,18 +28,15 @@ class CreateUsersTable extends Migration
             $table->string('genero');
 
             $table->unsignedBigInteger('ciudad_id')->nullable();
-            $table->unsignedBigInteger('estado_id')->nullable();
-            $table->unsignedBigInteger('pais_id')->nullable();
-
-            $table->foreign('ciudad_id')->references('id')->on('ciudades');
-            $table->foreign('estado_id')->references('id')->on('ciudades');
-            $table->foreign('pais_id')->references('id')->on('ciudades');
-
+            
+            $table->foreign('ciudad_id')->references('id')->on('ciudades')->onDelete("cascade");
+            
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->rememberToken();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -24,9 +24,8 @@ class CreatePagosTable extends Migration
             $table->unsignedBigInteger('info_fiscal_id')->nullable();
             $table->unsignedBigInteger('paquete_id')->nullable();
 
-            $table->foreign('cliente_id')->references('id')->on('info_fiscales');
-            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales');
-            $table->foreign('paquete_id')->references('id')->on('paquetes');
+            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales')->onDelete("cascade");
+            $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

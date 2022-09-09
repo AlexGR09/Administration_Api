@@ -18,7 +18,7 @@ class CreateEstadosTable extends Migration
             $table->string('nombre');
 
             $table->unsignedBigInteger('pais_id');
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

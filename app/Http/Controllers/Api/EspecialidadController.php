@@ -56,9 +56,9 @@ class EspecialidadController extends Controller
      */
     public function show($id)
     {
-        $user_id = auth()->user()->id;
-        if(Especialidad::where(["id"=>$id, "user_id"=>$user_id])->exists()){
-            $info = Especialidad::where(["id" => $id, "user_id" => $user_id])->get();
+        //$user_id = auth()->user()->id;
+        if(Especialidad::where(["id"=>$id])->exists()){
+            $info = Especialidad::where(["id" => $id])->get();
 
             return response()->json([
                 "status" => 1,

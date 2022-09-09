@@ -14,7 +14,7 @@ class Pago extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('metodopago','fechapago','periodostiempo','monto','cliente_id','info_fiscal_id','paquete_id','creadopor','actualizadopor');
+    protected $fillable = array('metodopago','fechapago','periodostiempo','monto','info_fiscal_id','paquete_id','creadopor','actualizadopor');
 
     public function ReportePago(){
         return $this->hasMany('App\Models\ReportePago');

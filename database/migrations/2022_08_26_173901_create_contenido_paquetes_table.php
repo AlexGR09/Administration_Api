@@ -20,8 +20,8 @@ class CreateContenidoPaquetesTable extends Migration
             $table->unsignedBigInteger('paquete_id')->nullable();
             $table->unsignedBigInteger('servicio_id')->nullable();
 
-            $table->foreign('paquete_id')->references('id')->on('paquetes');
-            $table->foreign('servicio_id')->references('id')->on('servicios');
+            $table->foreign('paquete_id')->references('id')->on('paquetes')->onDelete("cascade");
+            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

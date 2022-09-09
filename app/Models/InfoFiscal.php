@@ -14,7 +14,7 @@ class InfoFiscal extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('razonsocial','rfc','tipovialidad','nombrevialidad','numeroexterior','numerointerior','tipocolonia','nombrecolonia','cp','cliente_id','ciudad_id','estado_id','pais_id','creadopor','actualizadopor');
+    protected $fillable = array('razonsocial','rfc','tipovialidad','nombrevialidad','numeroexterior','numerointerior','tipocolonia','nombrecolonia','cp','cliente_id','ciudad_id','creadopor','actualizadopor');
 
     public function Documentacion(){
         return $this->hasMany('App\Models\Documentacion');

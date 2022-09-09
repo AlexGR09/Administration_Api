@@ -25,8 +25,8 @@ class CreateDocumentacionesTable extends Migration
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->unsignedBigInteger('info_fiscal_id')->nullable();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete("cascade");
+            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

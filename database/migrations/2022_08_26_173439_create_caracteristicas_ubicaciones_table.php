@@ -23,7 +23,7 @@ class CreateCaracteristicasUbicacionesTable extends Migration
 
             $table->unsignedBigInteger('ubicacion_id')->nullable();
 
-            $table->foreign('ubicacion_id')->references('id')->on('ubicaciones');
+            $table->foreign('ubicacion_id')->references('id')->on('ubicaciones')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

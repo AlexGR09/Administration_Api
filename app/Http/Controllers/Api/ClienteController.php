@@ -26,11 +26,12 @@ class ClienteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             "titulo" => "required",
@@ -38,13 +39,16 @@ class ClienteController extends Controller
             "curp" => "required",
             "tipotelefono" => "required",
             "telefonocliente" => "required",
-            "titulo" => "required"
         ]);
 
         $user_id = auth()->user()->id;
         $cliente = new Cliente();
         $cliente->user_id = $user_id;
-        $cliente->cliente = $request->cliente;
+        $cliente->titulo = $request->titulo;
+        $cliente->foto = $request->foto;
+        $cliente->curp = $request->curp;
+        $cliente->tipotelefono = $request->tipotelefono;
+        $cliente->telefonocliente = $request->telefonocliente;
         $cliente->save();
 
         return response([
@@ -54,34 +58,12 @@ class ClienteController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

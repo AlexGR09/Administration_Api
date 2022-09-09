@@ -20,8 +20,8 @@ class CreateCiudadesTable extends Migration
             $table->unsignedBigInteger('estado_id')->nullable();
             $table->unsignedBigInteger('pais_id')->nullable();
 
-            $table->foreign('pais_id')->references('id')->on('paises');
-            $table->foreign('estado_id')->references('id')->on('estados');
+            $table->foreign('pais_id')->references('id')->on('paises')->onDelete("cascade");
+            $table->foreign('estado_id')->references('id')->on('estados')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

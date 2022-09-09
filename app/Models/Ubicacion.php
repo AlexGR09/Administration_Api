@@ -14,7 +14,7 @@ class Ubicacion extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('tipo','nombreubicaciones','cofeprisfunc','cofeprispubli','email','telefonocitas','tipotelefono','telefonoemergencias','imagenubicacion','tipovialidad','nombrevialidad','numeroexterior','numerointerior',' tipocolonia','nombrecolonia','cp','cliente_id','info_fiscal_id','ciudad_id','estado_id','pais_id','creadopor','actualizadopor');
+    protected $fillable = array('tipo','nombreubicaciones','cofeprisfunc','cofeprispubli','email','telefonocitas','tipotelefono','telefonoemergencias','imagenubicacion','tipovialidad','nombrevialidad','numeroexterior','numerointerior',' tipocolonia','nombrecolonia','cp','cliente_id','info_fiscal_id','ciudad_id','creadopor','actualizadopor');
 
     public function CaracteristicasUbicacion(){
         return $this->hasOne('App\Models\CaracteristicasUbicacion');

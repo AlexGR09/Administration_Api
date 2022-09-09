@@ -105,4 +105,21 @@ class UserController extends Controller
             "msg" => "Cerró sesión",
         ]);
     }
+
+    public function delete($id){
+        $user_id= auth()->user()->id;
+        if(User::where(["id" => $id, "user_id" => $user_id])->exists()){
+            $especialidad = User::where(["id" => $id, "user_id" => $user_id])->first();
+            $especialidad->delete();
+            return response()->json([
+                "status" => 1,
+                "msg" => "Especialidad eliminada",
+            ]);
+        }else{
+            return response()->json([
+                "Status" => 0,
+                "msg" => "No se encontró dicha especialidad"
+            ], 404);
+        }
+    }
 }

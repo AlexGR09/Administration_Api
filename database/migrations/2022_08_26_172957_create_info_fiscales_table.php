@@ -27,14 +27,10 @@ class CreateInfoFiscalesTable extends Migration
 
             $table->unsignedBigInteger('cliente_id')->nullable();
             $table->unsignedBigInteger('ciudad_id')->nullable();
-            $table->unsignedBigInteger('estado_id')->nullable();
-            $table->unsignedBigInteger('pais_id')->nullable();
 
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('ciudad_id')->references('id')->on('ciudades');
-            $table->foreign('estado_id')->references('id')->on('ciudades');
-            $table->foreign('pais_id')->references('id')->on('ciudades');
-
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete("cascade");
+            $table->foreign('ciudad_id')->references('id')->on('ciudades')->onDelete("cascade");
+            
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
