@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use App\Models\Especialidad;
 use Illuminate\Http\Request;
 
@@ -83,6 +84,7 @@ class EspecialidadController extends Controller
     public function update(Request $request, $id)
     {
         $user_id= auth()->user()->id;
+        $cliente= Cliente::where(["user_id" => $id])->first();
         if(Especialidad::where(["id" => $id, "user_id" => $user_id])->exists()){
             $especialidad = Especialidad::find($id);
             $especialidad->isset($request->especialidad) ? $request->especialidad : $especialidad->especialidad;

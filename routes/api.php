@@ -21,19 +21,23 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function(){
+    //crud Usuario
     Route::get('user-profile', [UserController::class, 'userProfile']);
     Route::get('logout', [UserController::class, 'logout']);
-    Route::delete('destroyUser/',[UserController::class, 'delete']);
+    Route::delete('destroyUser',[UserController::class, 'delete']);
+    Route::delete('deleteUser/{id}',[UserController::class, 'deleteUser']);
+    Route::put('updateUser/{id}', [UserController::class, 'update']);
 
-    //especialidad
+    //crud Especialidad
     Route::post("createEspecialidad", [EspecialidadController::class, 'create']);
     Route::get("indexEspecialidad", [EspecialidadController::class, 'index']);
     Route::get("showEspecialidad/{id}", [EspecialidadController::class, 'show']);
     Route::delete("destroyEspecialidad/{id}", [EspecialidadController::class, 'destroy']);
     Route::put("updateEspecialidad/{id}", [EspecialidadController::class, 'update']);
-
-    //cliente
+     
+    //crud Cliente
     Route::post("storeCliente", [ClienteController::class, 'store']);
+    Route::get("indexCliente", [ClienteController::class, 'index']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
