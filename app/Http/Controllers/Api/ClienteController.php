@@ -51,6 +51,16 @@ class ClienteController extends Controller
         $cliente->telefonocliente = $request->telefonocliente;
         $cliente->save();
 
+        /*
+        {
+            "titulo" : "aqui va el documento del titulo",
+            "foto" : "inserte la foto",
+            "curp" : "inserte curp",
+            "tipotelefono" : "casa/movil/oficina",
+            "telefonocliente" : "numero de telefono"              
+        }
+        */
+
         return response([
             "status" => 1,
             "msg" =>"Cliente registrado"
@@ -65,7 +75,20 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_id = auth()->user()->id;
+        if(Cliente::where(["id" => $id, "user_id" => $user_id])->exists()){
+            $info =Cliente::where(["id" => $id, "user_id" => $user_id])->get();
+            return response()->json([
+                "status" => 1,
+                "msg" => "Este es el cliente",
+                "msg" => $info,
+            ],404);
+        }else{            
+            return response()->json([
+                "status" => 0,
+                "msg" => "No se encontró el cliente"
+            ], 404);
+        }
     }
 
     /**

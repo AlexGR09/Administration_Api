@@ -92,7 +92,7 @@ class UserController extends Controller
 
     public function userProfile(){
         return response()->json([
-            "status" => 0,
+            "status" => 1,
             "msg" => "Acerca del usuario",
             "data"=> auth()->user()
         ]);
@@ -106,11 +106,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function delete($id){
+    public function delete(){
         $user_id= auth()->user()->id;
-        if(User::where(["id" => $id, "user_id" => $user_id])->exists()){
-            $especialidad = User::where(["id" => $id, "user_id" => $user_id])->first();
-            $especialidad->delete();
+        if(User::where(["id" => $user_id])->exists()){
+            $user = User::where(["id" => $user_id])->first();
+            
+            $user->delete();
             return response()->json([
                 "status" => 1,
                 "msg" => "Especialidad eliminada",

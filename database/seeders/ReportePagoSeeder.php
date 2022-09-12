@@ -22,9 +22,7 @@ class ReportePagoSeeder extends Seeder
                 'id'=>1,
                 'reporte_id'=>1,
                 'pago_id'=>1,
-                'info_fiscal_id'=>1,
-                'cliente_id'=>1,
-                'paquete_id'=>1,
+                
             ],
         ]);
     }

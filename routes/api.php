@@ -23,6 +23,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::get('user-profile', [UserController::class, 'userProfile']);
     Route::get('logout', [UserController::class, 'logout']);
+    Route::delete('destroyUser/',[UserController::class, 'delete']);
 
     //especialidad
     Route::post("createEspecialidad", [EspecialidadController::class, 'create']);
@@ -32,7 +33,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::put("updateEspecialidad/{id}", [EspecialidadController::class, 'update']);
 
     //cliente
-    Route::post("createCliente", [ClienteController::class, 'create']);
+    Route::post("storeCliente", [ClienteController::class, 'store']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

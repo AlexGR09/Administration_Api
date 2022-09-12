@@ -39,8 +39,7 @@ class UbicacionSeeder extends Seeder
                 'cliente_id'=>1,
                 'info_fiscal_id'=>1,
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
+                
             ]
         ]);
     }

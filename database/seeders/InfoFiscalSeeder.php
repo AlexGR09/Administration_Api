@@ -31,8 +31,7 @@ class InfoFiscalSeeder extends Seeder
                 'cp'=>'29088',
                 'cliente_id'=>1,
                 'ciudad_id'=>1,
-                'estado_id'=>1,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>2,
@@ -47,8 +46,6 @@ class InfoFiscalSeeder extends Seeder
                 'cp'=>'20078',
                 'cliente_id'=>2,
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
             ],
         ]);
     }

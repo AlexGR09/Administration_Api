@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             [
                 'id'=>1,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@guiasalud.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Gonzalez',
@@ -31,13 +31,12 @@ class UserSeeder extends Seeder
                 'edad'=>'44',
                 'genero'=>'Masculino',
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>2,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@guiasalud.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Salvador',
@@ -47,13 +46,12 @@ class UserSeeder extends Seeder
                 'edad'=>'23',
                 'genero'=>'Femenino',
                 'ciudad_id'=>1,
-                'estado_id'=>1,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>3,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@guiasalud.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Balmaceda',
@@ -63,13 +61,12 @@ class UserSeeder extends Seeder
                 'edad'=>'27',
                 'genero'=>'Masculino',
                 'ciudad_id'=>1,
-                'estado_id'=>1,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>4,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@guiasalud.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Rios',
@@ -79,13 +76,12 @@ class UserSeeder extends Seeder
                 'edad'=>'30',
                 'genero'=>'Femenino',
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>5,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@gmail.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Ocampo',
@@ -95,13 +91,12 @@ class UserSeeder extends Seeder
                 'edad'=>'24',
                 'genero'=>'Masculino',
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>6,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@gmail.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Delgado',
@@ -111,13 +106,12 @@ class UserSeeder extends Seeder
                 'edad'=>'25',
                 'genero'=>'Femenino',
                 'ciudad_id'=>2,
-                'estado_id'=>2,
-                'pais_id'=>1,
+                
             ],
             [
                 'id'=>7,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->regexify('[a-z]{4}@gmail.com'),
+                'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
                 'nombre'=>$faker->name,
                 'apellidopaterno'=>'Espinoza',
@@ -127,8 +121,7 @@ class UserSeeder extends Seeder
                 'edad'=>'22',
                 'genero'=>'Masculino',
                 'ciudad_id'=>1,
-                'estado_id'=>1,
-                'pais_id'=>1,
+                
             ],
         ]);
     }
