@@ -34,10 +34,13 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::get("showEspecialidad/{id}", [EspecialidadController::class, 'show']);
     Route::delete("destroyEspecialidad/{id}", [EspecialidadController::class, 'destroy']);
     Route::put("updateEspecialidad/{id}", [EspecialidadController::class, 'update']);
-     
+
     //crud Cliente
     Route::post("storeCliente", [ClienteController::class, 'store']);
     Route::get("indexCliente", [ClienteController::class, 'index']);
+    Route::post("updateCliente/{id}", [ClienteController::class, 'update']);
+    Route::delete("destroyCliente/{id}", [ClienteController::class, 'delete']);
+    Route::get("showCliente", [ClienteController::class,'show']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

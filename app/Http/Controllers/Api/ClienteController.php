@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -16,13 +17,20 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $user_id = auth()->user()->id;
-        $cliente= Cliente::where("user_id", $user_id)->get();
-
-        return response()->json([
-            "status" => 1,
-            "msg" => "Cliente",
-            "data" => $cliente
-        ]);
+        if(User::where(["id" => $user_id])->exists()){
+            $index_cliente = $request->id;
+            $cliente= Cliente::where($index_cliente)->get();
+            return response()->json([
+                "status" => 1,
+                "msg" => "Cliente",
+                "data" => $cliente
+            ]);
+        }else{
+            return response()->json([
+                "status" => 0,
+                "msg" => "Cliente",
+            ]);
+        }
     }
 
     /**
@@ -43,12 +51,13 @@ class ClienteController extends Controller
 
         $user_id = auth()->user()->id;
         $cliente = new Cliente();
-        $cliente->user_id = $user_id;
+        $cliente->user_id = $request->user_id;
         $cliente->titulo = $request->titulo;
         $cliente->foto = $request->foto;
         $cliente->curp = $request->curp;
         $cliente->tipotelefono = $request->tipotelefono;
         $cliente->telefonocliente = $request->telefonocliente;
+
         $cliente->save();
 
         /*
@@ -60,6 +69,8 @@ class ClienteController extends Controller
             "telefonocliente" : "numero de telefono"              
         }
         */
+
+
 
         return response([
             "status" => 1,
@@ -73,22 +84,16 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         $user_id = auth()->user()->id;
-        if(Cliente::where(["id" => $id, "user_id" => $user_id])->exists()){
-            $info =Cliente::where(["id" => $id, "user_id" => $user_id])->get();
-            return response()->json([
-                "status" => 1,
-                "msg" => "Este es el cliente",
-                "msg" => $info,
-            ],404);
-        }else{            
-            return response()->json([
-                "status" => 0,
-                "msg" => "No se encontró el cliente"
-            ], 404);
-        }
+        $cliente= Cliente::where("id", $user_id)->get();
+
+        return response()->json([
+            "status" => 1,
+            "msg" => "Cliente",
+            "data" => $cliente
+        ]);
     }
 
     /**
@@ -98,9 +103,31 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        if(Cliente::where(["id" => $user_id])->exists()){
+            $actualizar_cliente = $request->id;
+            $cliente = Cliente::find($actualizar_cliente);
+            $cliente->user_id = $user_id;
+            $cliente->titulo = $request->titulo;
+            $cliente->foto = $request->foto;
+            $cliente->curp = $request->curp;
+            $cliente->tipotelefono = $request->tipotelefono;
+            $cliente->telefonocliente = $request->telefonocliente;
+            
+            $cliente->save();
+
+            return response()->json([
+                "status" =>1,
+                "msg" => "cliente actualizado"
+            ]);
+        }else{
+            return response()->json([
+                "status" =>0,
+                "msg" => "no se actualizo el cliente"
+            ],404);
+        }
     }
 
     /**
@@ -109,8 +136,23 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+        if(User::where(["id" => $user_id])->exists()){
+            $eliminar_cliente = $request->id;
+            $cliente = Cliente::find($eliminar_cliente);
+
+            $cliente->delete();
+            return response()->json([
+                "status" => 1,
+                "msg" => "Cliente eliminado",
+            ]);
+        }else{
+            return response()->json([
+                "status" => 0,
+                "msg" => "No está el cliente",
+            ]);
+        }
     }
 }

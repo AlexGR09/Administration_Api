@@ -135,7 +135,7 @@ class UserController extends Controller
         $user_id= auth()->user()->id;
         if(User::where(["id" => $user_id])->exists()){
 
-            $eliminar_id= $request->id;
+            $eliminar_id = $request->id;
             $user = User::find($eliminar_id);
             
             $user->delete();
