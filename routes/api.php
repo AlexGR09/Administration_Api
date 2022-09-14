@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\EspecialidadController;
+use App\Http\Controllers\Api\UbicacionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,13 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::post("updateCliente/{id}", [ClienteController::class, 'update']);
     Route::delete("destroyCliente/{id}", [ClienteController::class, 'delete']);
     Route::get("showCliente", [ClienteController::class,'show']);
+
+    //curd ubicaciones
+    Route::post("registerUbicaciones", [UbicacionController::class, 'store']);
+    Route::put("updateUbicaciones/{id}", [UbicacionController::class, 'update']); 
+    Route::get("showUbicaciones", [UbicacionController::class, 'show']);
+    Route::get("indexUbicaciones", [UbicacionController::class, 'index']);
+    Route::delete("deleteUbicaciones/{id}", [UbicacionController::class, 'delete']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
