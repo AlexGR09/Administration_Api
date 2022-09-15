@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CaracteristicasUbicacionController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\EspecialidadController;
 use App\Http\Controllers\Api\UbicacionController;
@@ -39,7 +40,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     //crud Cliente
     Route::post("storeCliente", [ClienteController::class, 'store']);
     Route::get("indexCliente", [ClienteController::class, 'index']);
-    Route::post("updateCliente/{id}", [ClienteController::class, 'update']);
+    Route::put("updateCliente/{id}", [ClienteController::class, 'update']);
     Route::delete("destroyCliente/{id}", [ClienteController::class, 'delete']);
     Route::get("showCliente", [ClienteController::class,'show']);
 
@@ -49,6 +50,12 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::get("showUbicaciones", [UbicacionController::class, 'show']);
     Route::get("indexUbicaciones", [UbicacionController::class, 'index']);
     Route::delete("deleteUbicaciones/{id}", [UbicacionController::class, 'delete']);
+
+    //crud caract ubicaciones
+    Route::post("createCaracteristicas",[CaracteristicasUbicacionController::class, 'store']);
+    Route::get("showCaracteristicas", [CaracteristicasUbicacionController::class, 'show']);
+    Route::put("updateCaracteristicas/{id}", [CaracteristicasUbicacionController::class, 'update']);
+    Route::delete("deleteCaracteristicas/{id}", [CaracteristicasUbicacionController::class, 'delete']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

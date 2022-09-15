@@ -57,7 +57,6 @@ class UbicacionController extends Controller
             "numerointerior" => "required",
             "tipocolonia" => "required",
             "nombrecolonia" => "required",
-            ""
         ]);
 
         $user_id = auth()->user()->id;
