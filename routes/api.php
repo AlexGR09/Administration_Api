@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CaracteristicasUbicacionController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\EspecialidadController;
+use App\Http\Controllers\Api\InformacionFiscalController;
 use App\Http\Controllers\Api\UbicacionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -56,7 +57,12 @@ Route::group(['middleware' => ["auth:sanctum"]], function(){
     Route::get("showCaracteristicas", [CaracteristicasUbicacionController::class, 'show']);
     Route::put("updateCaracteristicas/{id}", [CaracteristicasUbicacionController::class, 'update']);
     Route::delete("deleteCaracteristicas/{id}", [CaracteristicasUbicacionController::class, 'delete']);
+
+    //crud info fiscal
+    Route::get("indexInfoFiscal",[InformacionFiscalController::class, "index"]);
+    Route::post("createInformacionFiscal",[InformacionFiscalController::class, "store"]);
 });
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
