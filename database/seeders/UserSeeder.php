@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1980-04-15',
                 'edad'=>'44',
                 'genero'=>'Masculino',
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
                 
             ],
             [
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1999-07-15',
                 'edad'=>'23',
                 'genero'=>'Femenino',
-                'ciudad_id'=>1,
+                'municipio_id'=>1,
                 
             ],
             [
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1995-09-24',
                 'edad'=>'27',
                 'genero'=>'Masculino',
-                'ciudad_id'=>1,
+                'municipio_id'=>1,
                 
             ],
             [
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1990-02-15',
                 'edad'=>'30',
                 'genero'=>'Femenino',
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
                 
             ],
             [
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1998-10-15',
                 'edad'=>'24',
                 'genero'=>'Masculino',
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
                 
             ],
             [
@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'1997-10-15',
                 'edad'=>'25',
                 'genero'=>'Femenino',
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
                 
             ],
             [
@@ -120,7 +120,7 @@ class UserSeeder extends Seeder
                 'fechanacimiento'=>'2000-10-15',
                 'edad'=>'22',
                 'genero'=>'Masculino',
-                'ciudad_id'=>1,
+                'municipio_id'=>1,
                 
             ],
         ]);
