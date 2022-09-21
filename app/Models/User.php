@@ -35,11 +35,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Freelancer');
     }
 
-    public function creadoPor(){
+    public function creadopor(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function actualizadoPor(){
+    public function actualizadopor(){
         return $this->belongsTo('App\Models\User');
     }
 }
