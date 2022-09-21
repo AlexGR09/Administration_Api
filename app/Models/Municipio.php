@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Ciudad extends Model
+class Municipio extends Model
 {
     use SoftDeletes, HasFactory;
 
-    protected $table = 'ciudades';
+    protected $table = 'municipios';
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];

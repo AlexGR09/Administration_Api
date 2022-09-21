@@ -14,7 +14,7 @@ class TestController extends Controller
 {
     public function index(Request $request)
     {
-        try {
+        /* try { */
             /* $user_id = auth()->user()->id; */
             $user = User::find(1);
             
@@ -44,11 +44,11 @@ class TestController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
           $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
           $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
           return (new Formatear)->igor(null,500,$todolodemas);
-        }
+        } */
     }
 
     public function store(Request $request)
