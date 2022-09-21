@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use  HasApiTokens, SoftDeletes, HasFactory, Notifiable;
+    use  HasApiTokens, hasPermisos, SoftDeletes, HasFactory, Notifiable;
 
     protected $table = 'users';
     public $timestamps = false;
@@ -19,27 +19,27 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
     protected $fillable = array('username','email','password','nombre','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','ciudad_id','estado_id','pais_id','creadopor','actualizadopor');
 
-    public function RolUsuario(){
-        return $this->hasMany('App\Models\RolUsuario');
+    public function roles(){
+        return $this->belongsToMany('App\\Models\Role','role_user');
     }
 
-    public function Empleado(){
+    public function empleado(){
         return $this->hasOne('App\Models\Empleado');
     }
 
-    public function Cliente(){
+    public function cliente(){
         return $this->hasOne('App\Models\Cliente');
     }
 
-    public function Freelancer(){
+    public function freelancer(){
         return $this->hasOne('App\Models\Freelancer');
     }
 
-    public function CreadoPor(){
+    public function creadoPor(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function ActualizadoPor(){
+    public function actualizadoPor(){
         return $this->belongsTo('App\Models\User');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaisesTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePaisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('paises', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('short')->nullable();
-            $table->integer('phonecode')->nullable();
+            
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('role_id')->references('id')->on('roles');
+
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();
@@ -32,6 +33,6 @@ class CreatePaisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('rol_usuarios');
     }
 }

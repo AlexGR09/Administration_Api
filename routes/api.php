@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('test', TestController::class)->only('index', 'store', 'show', 'update', 'destoy');
+
+
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 

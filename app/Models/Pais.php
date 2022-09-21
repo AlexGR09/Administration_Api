@@ -14,7 +14,7 @@ class Pais extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('nombre','creadopor','actualizadopor');
+    protected $fillable = array('nombre','short','phonecode','creadopor','actualizadopor');
 
     public function Estado(){
         return $this->hasMany('App\Models\Estado');

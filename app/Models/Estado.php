@@ -16,11 +16,11 @@ class Estado extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('nombre','pais_id','creadopor','actualizadopor');
 
-    public function Pais(){
+    public function pais(){
         return $this->belongsTo('App\Models\Pais');
     }
 
-    public function Ciudad(){
+    public function municipio(){
         return $this->hasMany('App\Models\Ciudad');
     }
 }
