@@ -38,7 +38,7 @@ class UbicacionSeeder extends Seeder
                 'cp'=>21038,
                 'cliente_id'=>1,
                 'info_fiscal_id'=>1,
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
                 
             ]
         ]);
