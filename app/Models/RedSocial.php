@@ -16,7 +16,7 @@ class RedSocial extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('tipo','url','usuario','password');
 
-    public function Cliente(){
+    public function cliente(){
         return $this->belongsTo('App\Models\Cliente');
     }
 }

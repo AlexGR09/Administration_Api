@@ -16,19 +16,19 @@ class Ubicacion extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('tipo','nombreubicaciones','cofeprisfunc','cofeprispubli','email','telefonocitas','tipotelefono','telefonoemergencias','imagenubicacion','tipovialidad','nombrevialidad','numeroexterior','numerointerior',' tipocolonia','nombrecolonia','cp','cliente_id','info_fiscal_id','ciudad_id','creadopor','actualizadopor');
 
-    public function CaracteristicasUbicacion(){
+    public function caracteristicasubicacion(){
         return $this->hasOne('App\Models\CaracteristicasUbicacion');
     }
 
-    public function Ciudad(){
+    public function ciudad(){
         return $this->hasOne('App\Models\Ciudad');
     }
 
-    public function Cliente(){
+    public function cliente(){
         return $this->belongsTo('App\Models\Cliente');
     }
 
-    public function InfoFiscal(){
+    public function infofiscal(){
         return $this->belongsTo('App\Models\InfoFiscal');
     }
 }

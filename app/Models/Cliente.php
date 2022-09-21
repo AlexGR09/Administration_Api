@@ -16,27 +16,27 @@ class Cliente extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('titulo','foto','tipotelefono','telefonocliente','user_id','especialidad_id','creadopor','actualizadopor');
 
-    public function Especialidad(){
+    public function especialidad(){
         return $this->hasMany('App\Models\Especialidad');
     }
 
-    public function InfoPublicitaria(){
+    public function infopublicitaria(){
         return $this->hasMany('App\Models\InfoPublicitaria');
     }
 
-    public function InfoFiscal(){
+    public function infofiscal(){
         return $this->hasOne('App\Models\InfoFiscal');
     }
 
-    public function Ubicacion(){
+    public function ubicacion(){
         return $this->hasMany('App\Models\Ubicacion');
     }
 
-    public function RedSocial(){
+    public function redsocial(){
         return $this->hasMany('App\Models\RedSocial');
     }
 
-    public function User(){
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 }

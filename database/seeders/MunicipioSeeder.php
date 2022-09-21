@@ -15,7 +15,7 @@ class MunicipioSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ciudades')->insert([
+        DB::table('municipios')->insert([
             [
                 "id" => 1,
                 "nombre" => "Aguascalientes",

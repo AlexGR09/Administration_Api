@@ -16,15 +16,15 @@ class Pago extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('metodopago','fechapago','periodostiempo','monto','info_fiscal_id','paquete_id','creadopor','actualizadopor');
 
-    public function ReportePago(){
+    public function reportepago(){
         return $this->hasMany('App\Models\ReportePago');
     }
 
-    public function InfoFiscal(){
+    public function infofiscal(){
         return $this->belongsTo('App\Models\InfoFiscal');
     }
 
-    public function Paquete(){
+    public function paquete(){
         return $this->belongsTo('App\Models\Paquete');
     }
 }

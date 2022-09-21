@@ -16,19 +16,19 @@ class Ciudad extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('nombre','estado_id','pais_id','creadopor','actualizadopor');
 
-    public function Estado(){
+    public function estado(){
         return $this->belongsTo('App\Models\Estado');
     }
 
-    public function User(){
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function InfoFiscal(){
+    public function infofiscal(){
         return $this->belongsTo('App\Models\InfoFiscal');
     }
 
-    public function Ubicacion(){
+    public function ubicacion(){
         return $this->belongsTo('App\Models\Ubicacion');
     }
 }
