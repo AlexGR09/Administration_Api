@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\User;
 use App\Models\Permiso;
 use App\Models\Estado;
@@ -9,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FormatterController as Formatear;
+use App\Models\Empleado;
+use App\Models\InfoFiscal;
 
 class TestController extends Controller
 {
@@ -30,7 +33,7 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = User::with('cliente')->paginate($limit);
+                $recurso = User::with('empleado','cliente')->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
