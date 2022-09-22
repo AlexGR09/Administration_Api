@@ -33,7 +33,7 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = User::with('empleado','cliente')->paginate($limit);
+                $recurso = DB::table('users')->join('clientes','users.id','=','clientes.user_id')->select('users.*')->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
