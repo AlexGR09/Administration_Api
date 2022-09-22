@@ -18,7 +18,7 @@ class Role extends Model
     protected $fillable =array('nombre','creadopor','actualizadopor');
 
     public function user(){
-        return $this->belongsToMany('App\\Models\User','role_user');
+        return $this->belongsToMany('App\Models\User','role_user');
     }
 
     public function creadopor(){

@@ -63,32 +63,34 @@ class TestController extends Controller
             {
                 DB::beginTransaction(); //IMPORTANTE AGREGAR
         
-                // Si el request NO trae array
-                $recurso->tipopersona = $request->tipopersona;
-                $recurso->razonsocial = $request->razonsocial;
-                $recurso->rfc = $request->rfc;
-                $recurso->domiciliofacturacion = $request->domiciliofacturacion;
-                $recurso->correofacturacion = $request->correofacturacion;
-                $recurso->cliente = $request->cliente;
-                $recurso->proveedor = $request->proveedor;
-                $recurso->save();
+                /* // Si el request NO trae array
+                $recurso->username = $request->username;
+                $recurso->email = $request->email;
+                $recurso->password = $request->password;
+                $recurso->nombre = $request->nombre;
+                $recurso->apellidomaterno = $request->apellidomaterno;
+                $recurso->apellidopaterno = $request->apellidopaterno;
+                $recurso->telefonopersonal = $request->telefonopersonal;
+                $recurso->fechanacimiento = $request->fechanacimiento;
+                $recurso->edad = $request->edad;
+                $request->genero = $request->genero;
+                $recurso->save(); */
 
                 //Si request llega con un array
-                if($request->paciente){
-                    foreach($request->fotografias as $fotografias){
-                        $recurso = new Fotografia;
-                        $recurso->fotografo_id = $fotografias['fotografo_id'];
-                        $recurso->imagen = $fotografias['imagen'];
-                        $recurso->fecha = $fotografias['fecha'];
-                        $recurso->descripcion = $fotografias['descripcion'];
-                        $recurso->categoria_id = $fotografias['categoria_id'];
-                        $recurso->tecnica = $fotografias['tecnica'];
-                        $recurso->camara = $fotografias['camara'];
-                        $recurso->objetivo = $fotografias['objetivo'];
-                        $recurso->iso = $fotografias['iso'];
-                        $recurso->balance = $fotografias['balance'];
-                        $recurso->velocidad = $fotografias['velocidad'];
-                        $recurso->diafragma = $fotografias['diafragma'];
+                if($request->user){
+                    foreach($request->usuario as $usuario){
+                        $recurso = new User;
+                        $recurso->user_id = $usuario['user_id'];
+                        $recurso->username = $usuario['username'];
+                        $recurso->email = $usuario['email'];
+                        $recurso->password = $usuario['password'];
+                        $recurso->nombre = $usuario['nombre'];
+                        $recurso->apellidomaterno = $usuario['apellidomaterno'];
+                        $recurso->apellidopaterno = $usuario['apellidopaterno'];
+                        $recurso->telefonopersonal = $usuario['telefonopersonal'];
+                        $recurso->fechanacimiento = $usuario['fechanacimiento'];
+                        $recurso->edad = $usuario['edad'];
+                        $recurso->genero = $usuario['genero'];
                         $recurso->save();
                     }
                 }
