@@ -30,7 +30,7 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = Estado::with('municipio')->paginate($limit);
+                $recurso = User::with('cliente')->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
@@ -117,10 +117,10 @@ class TestController extends Controller
         
             $todolodemas = [];
   
-            if($user->puede($user,'Fotografia','r'))
+            if($user->puede($user,'cliente','r'))
             {
   
-            $recurso = Fotografia::with('categoria','fotografo')->find($id);
+            $recurso = User::with('cliente')->find($id);
             
                 if (is_null($recurso)) {
                     $todolodemas['info']['mensaje'] = 'No se encontró el registro buscado en la base de datos';
