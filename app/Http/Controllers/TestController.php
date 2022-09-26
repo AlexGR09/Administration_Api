@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Permiso;
 use App\Models\Estado;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class TestController extends Controller
 {
     public function index(Request $request)
     {
-        try {
+        /* try { */
             /* $user_id = auth()->user()->id; */
             $user = User::find(1);
             
@@ -30,6 +31,23 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
+                $user = User::find(1);
+                $rol = $user->roles;
+                return $rol->pivot;
+
+                $newRole = 'gerencia';
+
+                $role = Role::where('rol', $newRole)->first();
+
+                if ($role->id == $this->role_id) {
+                    return $this;
+                }
+
+                $this->role_id = $role->id;
+                $this->save();
+                //$this->log($this->id, 'App\User', 4000, Auth::id(), null, $newRole);
+                return $this;
+
                 $recurso = Estado::with('municipio')->paginate($limit);
 
                 if($recurso==null){
@@ -44,11 +62,11 @@ class TestController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
           $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
           $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
           return (new Formatear)->igor(null,500,$todolodemas);
-        }
+        } */
     }
 
     public function store(Request $request)

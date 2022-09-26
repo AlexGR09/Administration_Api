@@ -46,7 +46,7 @@ trait hasPermisos {
 
     public function darRole($newRole) {
         try {
-            $role = Role::where('nombre', $newRole)->first();
+            $role = Role::where('rol', $newRole)->first();
 
             if ($role->id == $this->role_id) {
                 return $this;
