@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FormatterController as Formatear;
+use App\Models\Municipio;
 use App\Models\Permiso;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function register(Request $request){
-        try {
+        /* try { */
             $user = Auth::user()->id;
             //$user = User::find(1);
             
@@ -93,11 +94,11 @@ class UserController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
             $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
             $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
             return (new Formatear)->igor(null,500,$todolodemas);
-        }  
+        } */  
     }
 
     public function login(Request $request){
@@ -141,8 +142,8 @@ class UserController extends Controller
     */
 
     public function index(Request $request){
-        try {
-            $user_id = auth()->user()->id;
+        /* try { */
+            $user_id = Auth::user()->id;
             /* $user = User::find(1); */
             
             $todolodemas = [];
@@ -157,7 +158,10 @@ class UserController extends Controller
             
             if($user_id->puede($user_id,'cliente','r'))
             {
-                $recurso = User::with('cliente')->paginate($limit);
+                $recurso = User::join('clientes','users.id','=','clientes.user_id')
+                ->join('municipios','users.municipio_id','=','municipios.id')
+                ->select('users.*','municipios.nombre')
+                ->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
@@ -171,11 +175,11 @@ class UserController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
           $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
           $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
           return (new Formatear)->igor(null,500,$todolodemas);
-        }
+        } */
     }
 
     public function show($id, Request $request){

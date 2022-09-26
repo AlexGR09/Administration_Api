@@ -35,10 +35,9 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = DB::table('users')
-                ->join('clientes','users.id','=','clientes.user_id')
+                $recurso = User::join('clientes','users.id','=','clientes.user_id')
                 ->join('municipios','users.municipio_id','=','municipios.id')
-                ->select('users.*','municipios.nombre')
+                ->select('users.*','clientes.*','municipios.nombre')
                 ->paginate($limit);
 
                 if($recurso==null){
