@@ -17,7 +17,7 @@ class Municipio extends Model
     protected $fillable = array('nombre','estado_id','pais_id','creadopor','actualizadopor');
 
     public function estado(){
-        return $this->belongsTo('App\Models\Estado');
+        return $this->belongsTo('App\Models\Estado')->with('pais');
     }
 
     public function user(){

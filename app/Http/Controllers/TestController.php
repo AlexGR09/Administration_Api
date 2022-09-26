@@ -35,10 +35,12 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = User::join('clientes','users.id','=','clientes.user_id')
+                /* $recurso = User::join('clientes','users.id','=','clientes.user_id')
                 ->join('municipios','users.municipio_id','=','municipios.id')
                 ->select('users.*','clientes.*','municipios.nombre')
-                ->paginate($limit);
+                ->paginate($limit); */
+                
+                $recurso = User::with('municipio')->join('clientes','users.id','=','clientes.user_id')->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
