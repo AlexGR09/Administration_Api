@@ -8,56 +8,84 @@ use App\Models\Permiso;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
     public function register(Request $request){
         try {
-            $user_id = auth()->user()->id;
-            /* $user = User::find(1); */
+            $user = Auth::user()->id;
+            //$user = User::find(1);
             
             $todolodemas = [];
 
-            if($user_id->puede($user_id,'cliente','c'))
+            if($user->puede($user,'cliente','c'))
             {
                 DB::beginTransaction(); //IMPORTANTE AGREGAR
         
-                /* // Si el request NO trae array
-                $recurso->username = $request->username;
-                $recurso->email = $request->email;
-                $recurso->password = $request->password;
-                $recurso->nombre = $request->nombre;
-                $recurso->apellidomaterno = $request->apellidomaterno;
-                $recurso->apellidopaterno = $request->apellidopaterno;
-                $recurso->telefonopersonal = $request->telefonopersonal;
-                $recurso->fechanacimiento = $request->fechanacimiento;
-                $recurso->edad = $request->edad;
-                $request->genero = $request->genero;
-                $recurso->save(); */
+                // Si el request NO trae array
+                $request->validate([
+                    'username' => 'required|unique:users',
+                    'email' => 'required|email|unique:users',
+                    'password' => 'required',
+                    'nombreusuario' => 'required',
+                    'apellidopaterno' => 'required',
+                    'apellidomaterno' => 'required',
+                    'telefonopersonal' => 'required',
+                    'fechanacimiento' => 'required',
+                    'edad' => 'required',
+                    'genero' => 'required',
+                ]);
+                $user =new User();
+                $user->username = $request->username;
+                $user->email = $request->email;
+                $user->password = Hash::make($request->password);
+                $user->nombreusuario = $request->nombreusuario;
+                $user->apellidomaterno = $request->apellidomaterno;
+                $user->apellidopaterno = $request->apellidopaterno;
+                $user->telefonopersonal = $request->telefonopersonal;
+                $user->fechanacimiento = $request->fechanacimiento;
+                $user->edad = $request->edad;
+                $user->genero = $request->genero;
+                $user->save();
+
+                /* {
+                    "username" : "josdav",
+                    "email" : "josdav@gmail.com",
+                    "password" : "123456",
+                    "nombreusuario" : "josue",
+                    "apellidopaterno" : "sarmiento",
+                    "apellidomaterno" : "montero",
+                    "telefonopersonal" : "96112345678",
+                    "fechanacimiento" : "2000-10-04",
+                    "edad" : "21",
+                    "genero" : "masculino"              
+                } */
 
                 //Si request llega con un array
-                if($request->user){
+                /* if($request->user){
                     foreach($request->usuario as $usuario){
-                        $recurso = new User;
-                        $recurso->user_id = $usuario['user_id'];
-                        $recurso->username = $usuario['username'];
-                        $recurso->email = $usuario['email'];
-                        $recurso->password = $usuario['password'];
-                        $recurso->nombre = $usuario['nombre'];
-                        $recurso->apellidomaterno = $usuario['apellidomaterno'];
-                        $recurso->apellidopaterno = $usuario['apellidopaterno'];
-                        $recurso->telefonopersonal = $usuario['telefonopersonal'];
-                        $recurso->fechanacimiento = $usuario['fechanacimiento'];
-                        $recurso->edad = $usuario['edad'];
-                        $recurso->genero = $usuario['genero'];
-                        $recurso->save();
+                        $user = new User();
+                        $user->user_id = $usuario['user_id'];
+                        $user->username = $usuario['username'];
+                        $user->email = $usuario['email'];
+                        $user->password = $usuario['password'];
+                        $user->nombreusuario = $usuario['nombreusuario'];
+                        $user->apellidomaterno = $usuario['apellidomaterno'];
+                        $user->apellidopaterno = $usuario['apellidopaterno'];
+                        $user->telefonopersonal = $usuario['telefonopersonal'];
+                        $user->fechanacimiento = $usuario['fechanacimiento'];
+                        $user->edad = $usuario['edad'];
+                        $user->genero = $usuario['genero'];
+                        $user->save();
                     }
-                }
+                } */
           
                 DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
-                return (new Formatear)->igor($recurso,201,$todolodemas);
+                return (new Formatear)->igor($user,201,$todolodemas);
             }
         
             else{
@@ -94,7 +122,7 @@ class UserController extends Controller
                 return response()->json([
                     "status" => 0,
                     "msg" => "La contraseña es incorrecta",
-                ], 404);
+                ]);
             }
             
         }else{

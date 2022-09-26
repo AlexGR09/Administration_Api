@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FormatterController as Formatear;
 use App\Models\Empleado;
+use App\Models\Especialidad;
 use App\Models\InfoFiscal;
+use App\Models\Municipio;
 
 class TestController extends Controller
 {
@@ -33,7 +35,11 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = DB::table('users')->join('clientes','users.id','=','clientes.user_id')->select('users.*')->paginate($limit);
+                $recurso = DB::table('users')
+                ->join('clientes','users.id','=','clientes.user_id')
+                ->join('municipios','users.municipio_id','=','municipios.id')
+                ->select('users.*','municipios.nombre')
+                ->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';

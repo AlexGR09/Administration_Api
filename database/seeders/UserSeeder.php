@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -21,9 +22,9 @@ class UserSeeder extends Seeder
             [
                 'id'=>1,
                 'username'=> $faker->regexify('[A-Z]{8}'),
-                'email'=> $faker->email,
-                'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'email'=> "gdop@gmail.com",
+                'password'=> Hash::make("123456"),
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Gonzalez',
                 'apellidomaterno'=>'Delgado',
                 'telefonopersonal'=>$faker->regexify('961[0-4]{7}'),
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Salvador',
                 'apellidomaterno'=>'Meza',
                 'telefonopersonal'=>$faker->regexify('984[0-4]{7}'),
@@ -53,7 +54,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Balmaceda',
                 'apellidomaterno'=>'Pascal',
                 'telefonopersonal'=>$faker->regexify('974[0-4]{7}'),
@@ -68,7 +69,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Rios',
                 'apellidomaterno'=>'Salado',
                 'telefonopersonal'=>$faker->regexify('999[0-4]{7}'),
@@ -83,7 +84,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Ocampo',
                 'apellidomaterno'=>'Ordoñez',
                 'telefonopersonal'=>$faker->regexify('556[0-4]{7}'),
@@ -98,7 +99,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Delgado',
                 'apellidomaterno'=>'Sanchez',
                 'telefonopersonal'=>$faker->regexify('655[0-4]{7}'),
@@ -113,7 +114,7 @@ class UserSeeder extends Seeder
                 'username'=> $faker->regexify('[A-Z]{8}'),
                 'email'=> $faker->email,
                 'password'=> $faker->regexify('[0-9]{9}'),
-                'nombre'=>$faker->name,
+                'nombreusuario'=>$faker->name,
                 'apellidopaterno'=>'Espinoza',
                 'apellidomaterno'=>'Perez',
                 'telefonopersonal'=>$faker->regexify('556[0-4]{7}'),
