@@ -135,7 +135,10 @@ class TestController extends Controller
             if($user->puede($user,'cliente','r'))
             {
   
-            $recurso = User::with('cliente')->find($id);
+                $recurso = User::with('municipio')
+                ->join('clientes','users.id','=','clientes.user_id')
+                ->join('especialidades','clientes.especialidad_id','=','especialidades.id')
+                ->find($id);
             
                 if (is_null($recurso)) {
                     $todolodemas['info']['mensaje'] = 'No se encontró el registro buscado en la base de datos';
