@@ -17,7 +17,7 @@ class User extends Authenticatable
     public $timestamps = false;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('username','email','password','nombreusuario','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','municipio_id','estado_id','pais_id','creadopor','actualizadopor');
+    protected $fillable = array('username','email','password','nombre','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','municipio_id','estado_id','pais_id','creadopor','actualizadopor');
 
     public function roles(){
         return $this->belongsToMany('App\\Models\Role','role_user');
@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     public function cliente(){
-        return $this->hasOne('App\Models\Cliente');
+        return $this->hasOne('App\\Models\Cliente')->with('Especialidad');
     }
 
     public function freelancer(){

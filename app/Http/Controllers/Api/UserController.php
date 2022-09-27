@@ -32,7 +32,7 @@ class UserController extends Controller
                     'username' => 'required|unique:users',
                     'email' => 'required|email|unique:users',
                     'password' => 'required',
-                    'nombreusuario' => 'required',
+                    'nombre' => 'required',
                     'apellidopaterno' => 'required',
                     'apellidomaterno' => 'required',
                     'telefonopersonal' => 'required',
@@ -44,7 +44,7 @@ class UserController extends Controller
                 $user->username = $request->username;
                 $user->email = $request->email;
                 $user->password = Hash::make($request->password);
-                $user->nombreusuario = $request->nombreusuario;
+                $user->nombre = $request->nombre;
                 $user->apellidomaterno = $request->apellidomaterno;
                 $user->apellidopaterno = $request->apellidopaterno;
                 $user->telefonopersonal = $request->telefonopersonal;
@@ -57,7 +57,7 @@ class UserController extends Controller
                     "username" : "josdav",
                     "email" : "josdav@gmail.com",
                     "password" : "123456",
-                    "nombreusuario" : "josue",
+                    "nombre" : "josue",
                     "apellidopaterno" : "sarmiento",
                     "apellidomaterno" : "montero",
                     "telefonopersonal" : "96112345678",
@@ -74,7 +74,7 @@ class UserController extends Controller
                         $user->username = $usuario['username'];
                         $user->email = $usuario['email'];
                         $user->password = $usuario['password'];
-                        $user->nombreusuario = $usuario['nombreusuario'];
+                        $user->nombre = $usuario['nombre'];
                         $user->apellidomaterno = $usuario['apellidomaterno'];
                         $user->apellidopaterno = $usuario['apellidopaterno'];
                         $user->telefonopersonal = $usuario['telefonopersonal'];
