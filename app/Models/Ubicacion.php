@@ -20,8 +20,8 @@ class Ubicacion extends Model
         return $this->hasOne('App\Models\CaracteristicasUbicacion');
     }
 
-    public function ciudad(){
-        return $this->hasOne('App\Models\Ciudad');
+    public function municipio(){
+        return $this->hasOne('App\Models\Municipio');
     }
 
     public function cliente(){

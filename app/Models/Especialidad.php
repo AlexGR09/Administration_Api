@@ -17,6 +17,6 @@ class Especialidad extends Model
     protected $fillable = array('especialidad','creadopor','actualizadopor');
 
     public function cliente(){
-        return $this->belongsTo('App\Models\Cliente')->with('User');
+        return $this->belongsToMany('App\Models\Cliente');
     }
 }

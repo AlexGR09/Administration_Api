@@ -26,7 +26,6 @@ class ClienteSeeder extends Seeder
                 'tipotelefono'=>'movil',
                 'telefonocliente'=>$faker->regexify('961[0-9]{7}'),
                 'user_id'=>5,
-                'especialidad_id'=>1,
             ],
             [
                 'id'=>2,
@@ -36,7 +35,6 @@ class ClienteSeeder extends Seeder
                 'tipotelefono'=>'casa',
                 'telefonocliente'=>$faker->regexify('961[0-9]{7}'),
                 'user_id'=>6,
-                'especialidad_id'=>3,
             ],
             [
                 'id'=>3,
@@ -46,7 +44,6 @@ class ClienteSeeder extends Seeder
                 'tipotelefono'=>'movil',
                 'telefonocliente'=>$faker->regexify('961[0-9]{7}'),
                 'user_id'=>7,
-                'especialidad_id'=>1,
             ],
         ]);
     }

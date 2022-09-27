@@ -24,7 +24,7 @@ class User extends Authenticatable
     }
 
     public function municipio(){
-        return $this->belongsTo('App\\Models\Municipio')->with('Estado');
+        return $this->belongsTo('App\\Models\Municipio')->with('Estado','Ubicacion');
     }
 
     public function empleado(){
@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     public function cliente(){
-        return $this->hasOne('App\\Models\Cliente')->with('Especialidad');
+        return $this->hasOne('App\\Models\Cliente')->with('InfoFiscal','ubicacion');
     }
 
     public function freelancer(){

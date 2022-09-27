@@ -25,7 +25,6 @@ class CreateClientesTable extends Migration
             $table->unsignedBigInteger('especialidad_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
-            $table->foreign('especialidad_id')->references('id')->on('especialidades')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
