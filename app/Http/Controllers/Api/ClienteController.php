@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\FormatterController as Formatear;
 
 class ClienteController extends Controller
 {
@@ -16,21 +19,49 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $user_id = auth()->user()->id;
-        if(User::where(["id" => $user_id])->exists()){
-            $index_cliente = $request->id;
-            $cliente= Cliente::where($index_cliente)->get();
-            return response()->json([
-                "status" => 1,
-                "msg" => "Cliente",
-                "data" => $cliente
-            ]);
-        }else{
-            return response()->json([
-                "status" => 0,
-                "msg" => "Cliente",
-            ]);
-        }
+        /* try { */
+            /* $user_id = auth()->user()->id; */
+            $user = User::find(1);
+            
+            $todolodemas = [];
+            $limit = env('PAGINATION_LIMIT', 20);
+            $maxPaginationLimit = env('MAX_PAGINATION_LIMIT', 500);
+            $order = 'id';
+            $direction = 'desc';
+        
+            if(isset($request->l)) $limit = $request->l > $maxPaginationLimit || $request->l == 0 ? $limit : $request->l;
+            if(isset($request->o)) $order = $request->o;
+            if(isset($request->d)) $direction = $request->d;
+            
+            if($user->puede($user,'cliente','r'))
+            {
+                /* $recurso = User::join('clientes','users.id','=','clientes.user_id')
+                ->join('municipios','users.municipio_id','=','municipios.id')
+                ->select('users.*','clientes.*','municipios.nombre')
+                ->paginate($limit); */
+                
+                $recurso = User::with('municipio')
+                ->join('clientes','users.id','=','clientes.user_id')
+                ->join('especialidades','clientes.especialidad_id','=','especialidades.id')
+                ->paginate($limit);
+
+                if($recurso==null){
+                    $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
+                    $todolodemas['info']['infos'] = ['registros'=>['No se encontraron registros en la base de datos']];
+                    return (new Formatear)->igor($recurso,202,$todolodemas);
+                }
+                return (new Formatear)->igor($recurso,200,$todolodemas);
+            }
+            else{
+                $todolodemas['error']['mensaje'] = 'No cuenta con los permisos para este recurso';
+                $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
+                return (new Formatear)->igor(null,403,$todolodemas);
+            }
+        /* } catch (\Throwable $th) {
+          $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
+          $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
+          return (new Formatear)->igor(null,500,$todolodemas);
+        } */
     }
 
     /**

@@ -18,8 +18,8 @@ class UserController extends Controller
 {
     public function register(Request $request){
         /* try { */
-            $user = Auth::user()->id;
-            //$user = User::find(1);
+            /* $user = Auth::user()->id; */
+            $user = User::find(1);
             
             $todolodemas = [];
 
