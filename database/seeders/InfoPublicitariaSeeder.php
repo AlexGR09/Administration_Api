@@ -23,6 +23,7 @@ class InfoPublicitariaSeeder extends Seeder
                 'llamadaconsulta'=>'aqui va la llamada',
                 'invitacionsitio'=>'aqui va la invitacion',
                 'datosconsulta'=>'aqui van los datos de la consulta',
+                'cliente_id'=>1,
             ],
             [
                 'id' =>2,
@@ -32,6 +33,7 @@ class InfoPublicitariaSeeder extends Seeder
                 'llamadaconsulta'=>'aqui va la llamada 2',
                 'invitacionsitio'=>'aqui va la invitacion 2',
                 'datosconsulta'=>'aqui van los datos de la consulta 2',
+                'cliente_id'=>2,
             ],
         ]);
     }

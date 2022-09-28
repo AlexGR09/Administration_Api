@@ -13,6 +13,7 @@ use App\Http\Controllers\FormatterController as Formatear;
 use App\Models\Empleado;
 use App\Models\Especialidad;
 use App\Models\InfoFiscal;
+use App\Models\InfoPublicitaria;
 use App\Models\Municipio;
 
 class TestController extends Controller
