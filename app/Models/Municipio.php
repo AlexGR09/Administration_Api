@@ -31,4 +31,8 @@ class Municipio extends Model
     public function ubicacion(){
         return $this->belongsTo('App\Models\Ubicacion');
     }
+
+    public function infofiscalubicacion(){
+        return $this->belongsTo('App\Models\Infofiscalubicacion');
+    }
 }

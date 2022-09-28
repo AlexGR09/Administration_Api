@@ -14,21 +14,21 @@ class Ubicacion extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('tipo','nombreubicaciones','cofeprisfunc','cofeprispubli','email','telefonocitas','tipotelefono','telefonoemergencias','imagenubicacion','tipovialidad','nombrevialidad','numeroexterior','numerointerior',' tipocolonia','nombrecolonia','cp','cliente_id','info_fiscal_id','municipio_id','creadopor','actualizadopor');
+    protected $fillable = array('tipo','nombreubicaciones','cofeprisfunc','cofeprispubli','email','telefonocitas','tipotelefono','telefonoemergencias','imagenubicacion','tipovialidad','nombrevialidad','numeroexterior','numerointerior',' tipocolonia','nombrecolonia','cp','cliente_id','municipio_id','creadopor','actualizadopor');
 
     public function caracteristicasubicacion(){
         return $this->hasOne('App\Models\CaracteristicasUbicacion');
     }
 
     public function municipio(){
-        return $this->hasOne('App\Models\Municipio');
+        return $this->belongsTo('App\Models\Municipio')->with('Estado');
     }
 
     public function cliente(){
         return $this->belongsTo('App\Models\Cliente');
     }
 
-    public function infofiscal(){
-        return $this->belongsTo('App\Models\InfoFiscal');
+    public function infofiscalubicacion(){
+        return $this->hasOne('App\Models\InfoFiscalUbicacion');
     }
 }

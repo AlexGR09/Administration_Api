@@ -14,7 +14,7 @@ class InfoFiscal extends Model
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('razonsocial','rfc','tipovialidad','nombrevialidad','numeroexterior','numerointerior','tipocolonia','nombrecolonia','cp','cliente_id','ciudad_id','creadopor','actualizadopor');
+    protected $fillable = array('razonsocial','rfc','tipovialidad','nombrevialidad','numeroexterior','numerointerior','tipocolonia','nombrecolonia','cp','cliente_id','municipio','creadopor','actualizadopor');
 
     public function documentacion(){
         return $this->hasMany('App\Models\Documentacion');
@@ -24,15 +24,13 @@ class InfoFiscal extends Model
         return $this->hasMany('App\Models\Pago');
     }
 
-    public function ciudad(){
-        return $this->hasOne('App\Models\Ciudad');
+    public function municipio(){
+        return $this->hasOne('App\Models\Municipio');
     }
 
     public function cliente(){
         return $this->belongsTo('App\Models\Cliente');
     }
 
-    public function ubicacion(){
-        return $this->belongsTo('App\Models\Ubicacion');
-    }
+    
 }
