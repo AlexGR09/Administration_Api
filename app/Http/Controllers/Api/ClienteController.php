@@ -35,18 +35,9 @@ class ClienteController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                /* $recurso = User::join('clientes','users.id','=','clientes.user_id')
-                ->join('municipios','users.municipio_id','=','municipios.id')
-                ->select('users.*','clientes.*','municipios.nombre')
-                ->paginate($limit); */
                 
-                //$recurso = Cliente::with('especialidad')
                 $recurso = Cliente::with('user','ubicacion','infofiscal','especialidad','infopublicitaria')
-                //->join('clientes','users.id','=','clientes.user_id')
-                //->join('especialidades','clientes.especialidad_id','=','especialidades.id')
-                /* ->join('ubicaciones','ubicaciones.cliente_id','=','clientes.id')
-                ->join('info_fiscales', 'ubicaciones.cliente_id','=','clientes.id')
-                 */->paginate($limit);
+                ->paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';

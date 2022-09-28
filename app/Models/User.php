@@ -24,7 +24,7 @@ class User extends Authenticatable
     }
 
     public function municipio(){
-        return $this->belongsTo('App\\Models\Municipio')->with('Estado','Ubicacion');
+        return $this->belongsTo('App\\Models\Municipio')->with('Estado');
     }
 
     public function empleado(){
