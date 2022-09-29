@@ -36,7 +36,7 @@ class ClienteController extends Controller
             if($user->puede($user,'cliente','r'))
             {
                 
-                $recurso = Cliente::with('user','ubicacion','infofiscal','especialidad','infopublicitaria')
+                $recurso = Cliente::with('user','ubicacion','infofiscal','especialidad','infopublicitaria','redsocial')
                 ->paginate($limit);
 
                 if($recurso==null){

@@ -16,7 +16,7 @@ class InfoPublicitaria extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('logotipo','tipografía','paletadecolores','llamadaconsulta','invitacionconsulta','invitacionsitio','datosconsulta','cliente_id','creadopor','actualizadopor');
 
-    public function infopublicitaria(){
-        return $this->belongsTo('App\Models\InfoPublicitaria');
+    public function cliente(){
+        return $this->belongsTo('App\Models\Cliente');
     }
 }

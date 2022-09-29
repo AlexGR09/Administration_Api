@@ -11,18 +11,26 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FormatterController as Formatear;
 use App\Models\CaracteristicasUbicacion;
+use App\Models\Documentacion;
 use App\Models\Empleado;
 use App\Models\Especialidad;
+use App\Models\Freelancer;
 use App\Models\InfoFiscal;
+use App\Models\InfoFiscalUbicacion;
 use App\Models\InfoPublicitaria;
 use App\Models\Municipio;
+use App\Models\Pago;
+use App\Models\Paquete;
+use App\Models\RedSocial;
+use App\Models\Reporte;
+use App\Models\Servicio;
 use App\Models\Ubicacion;
 
 class TestController extends Controller
 {
     public function index(Request $request)
     {
-        /* try { */
+        try {
             /* $user_id = auth()->user()->id; */
             $user = User::find(1);
             
@@ -38,7 +46,7 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = Empleado::with('user')
+                $recurso = Servicio::with('contenidopaquete')
                 ->paginate($limit);
 
                 if($recurso==null){
@@ -53,11 +61,11 @@ class TestController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        /* } catch (\Throwable $th) {
+        } catch (\Throwable $th) {
           $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
           $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
           return (new Formatear)->igor(null,500,$todolodemas);
-        } */
+        }
     }
 
     public function store(Request $request)
