@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id'=>1,
-                'username'=> $faker->regexify('[A-Z]{8}'),
+                'username'=> "root",
                 'email'=> "gdop@gmail.com",
                 'password'=> Hash::make("123456"),
                 'nombre'=>$faker->name,

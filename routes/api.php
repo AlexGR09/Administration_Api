@@ -29,6 +29,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::group(['middleware' => ["auth:sanctum"]], function(){
     //crud Usuario
     Route::get('indexUser', [UserController::class, 'index']);
+    Route::get('showUser',[UserController::class, 'show']);
     Route::get('logout', [UserController::class, 'logout']);
     Route::delete('destroyUser',[UserController::class, 'delete']);
     Route::delete('deleteUser/{id}',[UserController::class, 'deleteUser']);

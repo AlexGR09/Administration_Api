@@ -25,7 +25,7 @@ class InfoFiscal extends Model
     }
 
     public function municipio(){
-        return $this->hasOne('App\Models\Municipio');
+        return $this->belongsTo('App\Models\Municipio')->with('Estado');
     }
 
     public function cliente(){

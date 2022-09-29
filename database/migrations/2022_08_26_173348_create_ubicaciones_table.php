@@ -33,11 +33,9 @@ class CreateUbicacionesTable extends Migration
             $table->integer('cp');
 
             $table->unsignedBigInteger('cliente_id')->nullable();
-            $table->unsignedBigInteger('info_fiscal_id')->nullable();
             $table->unsignedBigInteger('municipio_id')->nullable();
             
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete("cascade");
-            $table->foreign('info_fiscal_id')->references('id')->on('info_fiscales')->onDelete("cascade");
             $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete("cascade");
             
             $table->unsignedBigInteger('creadopor_id')->nullable();

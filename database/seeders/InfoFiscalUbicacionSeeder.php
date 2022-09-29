@@ -17,7 +17,7 @@ class InfoFiscalUbicacionSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        DB::table('info_fiscales')->insert([
+        DB::table('info_fiscales_ubicaciones')->insert([
             [
                 'id'=>1,
                 'razonsocial'=>'No recuerdo que iba aquí',

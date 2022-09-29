@@ -37,5 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PermisoSeeder::class);
         $this->call(PermisionableSeeder::class);
         $this->call(ClienteEspecialidadSeeder::class);
+        $this->call(InfoFiscalUbicacionSeeder::class);
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FormatterController as Formatear;
+use App\Models\CaracteristicasUbicacion;
 use App\Models\Empleado;
 use App\Models\Especialidad;
 use App\Models\InfoFiscal;
@@ -37,7 +38,7 @@ class TestController extends Controller
             
             if($user->puede($user,'cliente','r'))
             {
-                $recurso = Ubicacion::with('cliente','infofiscalubicacion','municipio')
+                $recurso = Empleado::with('user')
                 ->paginate($limit);
 
                 if($recurso==null){

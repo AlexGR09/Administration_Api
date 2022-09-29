@@ -137,13 +137,13 @@ class UserController extends Controller
     /*
     {
         "email" : "josdav@gmail.com",
-        "password" : "123456",
+        "password" : "123456"
     }
     */
 
     public function index(Request $request){
         /* try { */
-            $user_id = Auth::user()->id;
+            $user = Auth::user();
             /* $user = User::find(1); */
             
             $todolodemas = [];
@@ -156,12 +156,9 @@ class UserController extends Controller
             if(isset($request->o)) $order = $request->o;
             if(isset($request->d)) $direction = $request->d;
             
-            if($user_id->puede($user_id,'cliente','r'))
+            if($user->puede($user,'cliente','r'))
             {
-                $recurso = User::join('clientes','users.id','=','clientes.user_id')
-                ->join('municipios','users.municipio_id','=','municipios.id')
-                ->select('users.*','municipios.nombre')
-                ->paginate($limit);
+                $recurso = User::paginate($limit);
 
                 if($recurso==null){
                     $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
@@ -192,7 +189,7 @@ class UserController extends Controller
             if($user_id->puede($user_id,'cliente','r'))
             {
   
-            $recurso = User::with('cliente')->find($id);
+            $recurso = User::find($id);
             
                 if (is_null($recurso)) {
                     $todolodemas['info']['mensaje'] = 'No se encontró el registro buscado en la base de datos';
