@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = array('username','email','password','nombre','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','municipio_id','estado_id','pais_id','creadopor','actualizadopor');
 
     public function roles(){
-        return $this->belongsToMany('App\\Models\Role','role_user');
+        return $this->belongsToMany('App\Models\Role','role_user');
     }
 
     public function municipio(){

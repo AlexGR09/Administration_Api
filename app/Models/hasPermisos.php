@@ -12,7 +12,7 @@ trait hasPermisos {
 
     public function puede($user,$tabla,$accion) {
         
-        $user = $user ?: auth()->user();
+        $user = $user ?: Auth::user();
         $permiso = Permiso::where('nombre','=',$tabla)->first();
         
         if($permiso) 

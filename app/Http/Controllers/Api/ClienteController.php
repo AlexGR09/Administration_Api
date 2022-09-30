@@ -66,25 +66,67 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "titulo" => "required",
-            "foto" => "required",
-            "curp" => "required",
-            "tipotelefono" => "required",
-            "telefonocliente" => "required",
-        ]);
+        try {
+            /* $user_id = auth()->user()->id; */
+            $user = User::find(1);
+            
+            $todolodemas = [];
 
-        $user_id = auth()->user()->id;
-        $cliente = new Cliente();
-        $cliente->user_id = $request->user_id;
-        $cliente->titulo = $request->titulo;
-        $cliente->foto = $request->file('foto')->store('public');
-        $cliente->curp = $request->curp;
-        $cliente->tipotelefono = $request->tipotelefono;
-        $cliente->telefonocliente = $request->telefonocliente;
+            if($user->puede($user,'cliente','c'))
+            {
+                DB::beginTransaction(); //IMPORTANTE AGREGAR
+        
+                // Si el request NO trae array
+                $request->validate([
+                    "titulo" => "required",
+                    "foto" => "required",
+                    "curp" => "required",
+                    "tipotelefono" => "required",
+                    "telefonocliente" => "required",
+                ]);
 
-        $cliente->save();
+                $recurso = new Cliente();
+                $recurso->titulo = $request->titulo;
+                $recurso->foto = $request->foto;
+                $recurso->curp = $request->curp;
+                $recurso->tipotelefono = $request->tipotelefono;
+                $recurso->telefonocliente = $request->telefonocliente;
+                $recurso->save();
 
+                //Si request llega con un array
+                /* if($request->user){
+                    foreach($request->usuario as $usuario){
+                        $recurso = new User;
+                        $recurso->user_id = $usuario['user_id'];
+                        $recurso->username = $usuario['username'];
+                        $recurso->email = $usuario['email'];
+                        $recurso->password = $usuario['password'];
+                        $recurso->nombre = $usuario['nombre'];
+                        $recurso->apellidomaterno = $usuario['apellidomaterno'];
+                        $recurso->apellidopaterno = $usuario['apellidopaterno'];
+                        $recurso->telefonopersonal = $usuario['telefonopersonal'];
+                        $recurso->fechanacimiento = $usuario['fechanacimiento'];
+                        $recurso->edad = $usuario['edad'];
+                        $recurso->genero = $usuario['genero'];
+                        $recurso->save();
+                    }
+                } */
+          
+                DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
+                return (new Formatear)->igor($recurso,201,$todolodemas);
+            }
+        
+            else{
+                $todolodemas['error']['mensaje'] = 'No cuenta con los permisos para este recurso';
+                $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
+                return (new Formatear)->igor(null,403,$todolodemas);
+            }
+        } catch (\Throwable $th) {
+            $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
+            $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
+            return (new Formatear)->igor(null,500,$todolodemas);
+        }
+        
         /*
         {
             "titulo" : "aqui va el documento del titulo",
@@ -95,12 +137,6 @@ class ClienteController extends Controller
         }
         */
 
-
-
-        return response([
-            "status" => 1,
-            "msg" =>"Cliente registrado"
-        ]);
     }
 
     /**

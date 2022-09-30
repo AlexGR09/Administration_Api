@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\FormatterController as Formatear;
 use App\Models\RedSocial;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class RedSocialController extends Controller
@@ -56,16 +57,6 @@ class RedSocialController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,7 +64,73 @@ class RedSocialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* try { */
+            /* $user_id = auth()->user()->id; */
+            $user = User::find(1);
+            
+            $todolodemas = [];
+
+            if($user->puede($user,'cliente','c'))
+            {
+                DB::beginTransaction(); //IMPORTANTE AGREGAR
+        
+                // Si el request NO trae array
+                $request->validate([
+                    "tipo" => "required",
+                    "url" => "required",
+                    "usuario" => "required",
+                    "password" => "required",
+                ]);
+
+                $red_social = new  RedSocial();
+                $red_social->tipo = $request->tipo;
+                $red_social->url = $request->url;
+                $red_social->usuario = $request->usuario;
+                $red_social->password = $request->password;
+                
+                $red_social->save();
+
+                //Si request llega con un array
+                /* if($request->user){
+                    foreach($request->usuario as $usuario){
+                        $recurso = new User;
+                        $recurso->user_id = $usuario['user_id'];
+                        $recurso->username = $usuario['username'];
+                        $recurso->email = $usuario['email'];
+                        $recurso->password = $usuario['password'];
+                        $recurso->nombre = $usuario['nombre'];
+                        $recurso->apellidomaterno = $usuario['apellidomaterno'];
+                        $recurso->apellidopaterno = $usuario['apellidopaterno'];
+                        $recurso->telefonopersonal = $usuario['telefonopersonal'];
+                        $recurso->fechanacimiento = $usuario['fechanacimiento'];
+                        $recurso->edad = $usuario['edad'];
+                        $recurso->genero = $usuario['genero'];
+                        $recurso->save();
+                    }
+                } */
+          
+                DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
+                return (new Formatear)->igor($red_social,201,$todolodemas);
+            }
+        
+            else{
+                $todolodemas['error']['mensaje'] = 'No cuenta con los permisos para este recurso';
+                $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
+                return (new Formatear)->igor(null,403,$todolodemas);
+            }
+        /* } catch (\Throwable $th) {
+            $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
+            $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
+            return (new Formatear)->igor(null,500,$todolodemas);
+        } */
+
+        /* {
+            "id" : 1,
+            "tipo" :"Facebook",
+            "url" : "Aqui va un URL",
+            "usuario" : "Usuario1",
+            "password" : "Contraseña"
+        } */
     }
 
     /**

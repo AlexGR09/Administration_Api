@@ -25,6 +25,7 @@ use App\Models\RedSocial;
 use App\Models\Reporte;
 use App\Models\Servicio;
 use App\Models\Ubicacion;
+use Illuminate\Support\Facades\Hash;
 
 class TestController extends Controller
 {
@@ -70,31 +71,34 @@ class TestController extends Controller
 
     public function store(Request $request)
     {    
-        try {
+        /* try { */
             /* $user_id = auth()->user()->id; */
             $user = User::find(1);
             
             $todolodemas = [];
 
-            if($user->puede($user,'Doctores','c'))
+            if($user->puede($user,'cliente','c'))
             {
                 DB::beginTransaction(); //IMPORTANTE AGREGAR
         
-                /* // Si el request NO trae array
-                $recurso->username = $request->username;
-                $recurso->email = $request->email;
-                $recurso->password = $request->password;
-                $recurso->nombre = $request->nombre;
-                $recurso->apellidomaterno = $request->apellidomaterno;
-                $recurso->apellidopaterno = $request->apellidopaterno;
-                $recurso->telefonopersonal = $request->telefonopersonal;
-                $recurso->fechanacimiento = $request->fechanacimiento;
-                $recurso->edad = $request->edad;
-                $request->genero = $request->genero;
-                $recurso->save(); */
+                // Si el request NO trae array
+                $request->validate([
+                    "metodopago" => "required",
+                    "fechapago" => "required",
+                    "periodostiempo" => "required",
+                    "monto" => "required",
+                ]);
+
+                $pago = new  Pago();
+                $pago->metodopago = $request->metodopago;
+                $pago->fechapago = $request->fechapago;
+                $pago->periodostiempo = $request->periodostiempo;
+                $pago->monto = $request->monto;
+
+                $pago->save();
 
                 //Si request llega con un array
-                if($request->user){
+                /* if($request->user){
                     foreach($request->usuario as $usuario){
                         $recurso = new User;
                         $recurso->user_id = $usuario['user_id'];
@@ -110,10 +114,10 @@ class TestController extends Controller
                         $recurso->genero = $usuario['genero'];
                         $recurso->save();
                     }
-                }
+                } */
           
                 DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
-                return (new Formatear)->igor($recurso,201,$todolodemas);
+                return (new Formatear)->igor($pago,201,$todolodemas);
             }
         
             else{
@@ -121,11 +125,11 @@ class TestController extends Controller
                 $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
                 return (new Formatear)->igor(null,403,$todolodemas);
             }
-        } catch (\Throwable $th) {
+        /* } catch (\Throwable $th) {
             $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
             $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
             return (new Formatear)->igor(null,500,$todolodemas);
-        }  
+        } */  
     }
 
     public function show($id, Request $request)
