@@ -28,3 +28,13 @@ class PagoSeeder extends Seeder
         ]);
     }
 }
+
+
+                /* 
+                {
+                    "metodopago" : "Paypal",
+                    "fechapago" : "2022-08-20",
+                    "periodostiempo" : "Mensual",
+                    "monto" : "1500,
+                } 
+                */
