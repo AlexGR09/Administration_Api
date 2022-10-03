@@ -83,19 +83,15 @@ class TestController extends Controller
         
                 // Si el request NO trae array
                 $request->validate([
-                    "metodopago" => "required",
-                    "fechapago" => "required",
-                    "periodostiempo" => "required",
-                    "monto" => "required",
+                    "nombreservicio" => "required",
+                    "costoservicio" => "required",
                 ]);
 
-                $pago = new  Pago();
-                $pago->metodopago = $request->metodopago;
-                $pago->fechapago = $request->fechapago;
-                $pago->periodostiempo = $request->periodostiempo;
-                $pago->monto = $request->monto;
-
-                $pago->save();
+                $servicio = new  Servicio();
+                $servicio->nombreservicio = $request->nombreservicio;
+                $servicio->costoservicio = $request->costoservicio;
+               
+                $servicio->save();
 
                 //Si request llega con un array
                 /* if($request->user){
@@ -117,7 +113,7 @@ class TestController extends Controller
                 } */
           
                 DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
-                return (new Formatear)->igor($pago,201,$todolodemas);
+                return (new Formatear)->igor($servicio,201,$todolodemas);
             }
         
             else{

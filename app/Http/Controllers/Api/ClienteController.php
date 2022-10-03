@@ -87,8 +87,7 @@ class ClienteController extends Controller
 
                 $recurso = new Cliente();
                 $recurso->titulo = $request->titulo;
-                $recurso->foto = $request->foto;
-                $recurso->curp = $request->curp;
+                $recurso->foto = $request->file('foto')->store('public');                $recurso->curp = $request->curp;
                 $recurso->tipotelefono = $request->tipotelefono;
                 $recurso->telefonocliente = $request->telefonocliente;
                 $recurso->save();
