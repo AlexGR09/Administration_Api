@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\FormatterController as Formatear;
 use App\Models\CaracteristicasUbicacion;
+use App\Models\ContenidoPaquete;
 use App\Models\Documentacion;
 use App\Models\Empleado;
 use App\Models\Especialidad;
@@ -83,13 +84,11 @@ class TestController extends Controller
         
                 // Si el request NO trae array
                 $request->validate([
-                    "nombreservicio" => "required",
-                    "costoservicio" => "required",
+                    "descripcion" => "required",
                 ]);
 
-                $recurso = new  Reporte();
-                $recurso->fecha = $request->fecha;
-                $recurso->montototal = $request->montototal;
+                $recurso = new  ContenidoPaquete();
+                $recurso->descripcion = $request->descripcion;
                
                 $recurso->save();
 
