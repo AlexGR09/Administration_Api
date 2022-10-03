@@ -64,6 +64,12 @@ class ReporteController extends Controller
     public function store(Request $request)
     {
         //
+        /* 
+        {
+            "fecha" : "2022-07-16",
+            "montototal" : "1500"
+        } 
+        */
     }
 
     /**

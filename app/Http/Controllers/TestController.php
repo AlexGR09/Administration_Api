@@ -87,11 +87,11 @@ class TestController extends Controller
                     "costoservicio" => "required",
                 ]);
 
-                $servicio = new  Servicio();
-                $servicio->nombreservicio = $request->nombreservicio;
-                $servicio->costoservicio = $request->costoservicio;
+                $recurso = new  Reporte();
+                $recurso->fecha = $request->fecha;
+                $recurso->montototal = $request->montototal;
                
-                $servicio->save();
+                $recurso->save();
 
                 //Si request llega con un array
                 /* if($request->user){
@@ -113,7 +113,7 @@ class TestController extends Controller
                 } */
           
                 DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
-                return (new Formatear)->igor($servicio,201,$todolodemas);
+                return (new Formatear)->igor($recurso,201,$todolodemas);
             }
         
             else{
