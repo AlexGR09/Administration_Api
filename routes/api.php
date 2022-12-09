@@ -20,12 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('test', TestController::class)->only('index', 'store', 'show', 'update', 'destroy');
+
+
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ["auth:sanctum"]], function(){
     //crud Usuario
-    Route::get('user-profile', [UserController::class, 'userProfile']);
+    Route::get('indexUser', [UserController::class, 'index']);
+    Route::get('showUser',[UserController::class, 'show']);
     Route::get('logout', [UserController::class, 'logout']);
     Route::delete('destroyUser',[UserController::class, 'delete']);
     Route::delete('deleteUser/{id}',[UserController::class, 'deleteUser']);

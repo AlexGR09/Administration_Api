@@ -27,9 +27,9 @@ class CreateUsersTable extends Migration
             $table->integer('edad');
             $table->string('genero');
 
-            $table->unsignedBigInteger('ciudad_id')->nullable();
+            $table->unsignedBigInteger('municipio_id')->nullable();
             
-            $table->foreign('ciudad_id')->references('id')->on('ciudades')->onDelete("cascade");
+            $table->foreign('municipio_id')->references('id')->on('municipios')->onDelete("cascade");
             
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

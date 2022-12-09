@@ -16,7 +16,8 @@ class CreatePaisesTable extends Migration
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-
+            $table->string('short')->nullable();
+            $table->integer('phonecode')->nullable();
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();
             $table->timestamps();

@@ -16,11 +16,11 @@ class ReportePago extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('reporte_id','pago_id','creadopor','actualizadopor');
 
-    public function Pago(){
+    public function pago(){
         return $this->belongsTo('App\Models\Pago');
     }
 
-    public function Reporte(){
+    public function reporte(){
         return $this->belongsTo('App\Models\Reporte');
     }
 }

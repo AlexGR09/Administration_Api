@@ -18,14 +18,13 @@ class CreateClientesTable extends Migration
             $table->string('titulo');
             $table->string('foto',100);
             $table->string('curp',18);
-            $table->enum('tipotelefono',array('movil','casa','oficina'));
+            $table->string('tipotelefono');
             $table->bigInteger('telefonocliente');
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('especialidad_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete("cascade");
-            $table->foreign('especialidad_id')->references('id')->on('especialidades')->onDelete("cascade");
 
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

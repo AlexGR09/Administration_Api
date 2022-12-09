@@ -16,7 +16,7 @@ class Documentacion extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('ine','cedula','titulo','comprobantedomicilio','constanciafiscal','certificados','cliente_id','info_fiscal_id','creadopor','actualizadopor');
 
-    public function InfoFiscal(){
+    public function infofiscal(){
         return $this->belongsTo('App\Models\InfoFiscal');
     }
 }

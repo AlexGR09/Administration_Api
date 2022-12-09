@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\FormatterController as Formatear;
 
 class ClienteController extends Controller
 {
@@ -16,21 +19,43 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $user_id = auth()->user()->id;
-        if(User::where(["id" => $user_id])->exists()){
-            $index_cliente = $request->id;
-            $cliente= Cliente::where($index_cliente)->get();
-            return response()->json([
-                "status" => 1,
-                "msg" => "Cliente",
-                "data" => $cliente
-            ]);
-        }else{
-            return response()->json([
-                "status" => 0,
-                "msg" => "Cliente",
-            ]);
-        }
+        /* try { */
+            /* $user_id = auth()->user()->id; */
+            $user = User::find(1);
+            
+            $todolodemas = [];
+            $limit = env('PAGINATION_LIMIT', 20);
+            $maxPaginationLimit = env('MAX_PAGINATION_LIMIT', 500);
+            $order = 'id';
+            $direction = 'desc';
+        
+            if(isset($request->l)) $limit = $request->l > $maxPaginationLimit || $request->l == 0 ? $limit : $request->l;
+            if(isset($request->o)) $order = $request->o;
+            if(isset($request->d)) $direction = $request->d;
+            
+            if($user->puede($user,'cliente','r'))
+            {
+                
+                $recurso = Cliente::with('user','ubicacion','infofiscal','especialidad','infopublicitaria','redsocial')
+                ->paginate($limit);
+
+                if($recurso==null){
+                    $todolodemas['info']['mensaje'] = 'No se encontraron registros en la base de datos';
+                    $todolodemas['info']['infos'] = ['registros'=>['No se encontraron registros en la base de datos']];
+                    return (new Formatear)->igor($recurso,202,$todolodemas);
+                }
+                return (new Formatear)->igor($recurso,200,$todolodemas);
+            }
+            else{
+                $todolodemas['error']['mensaje'] = 'No cuenta con los permisos para este recurso';
+                $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
+                return (new Formatear)->igor(null,403,$todolodemas);
+            }
+        /* } catch (\Throwable $th) {
+          $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
+          $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
+          return (new Formatear)->igor(null,500,$todolodemas);
+        } */
     }
 
     /**
@@ -41,6 +66,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $request->validate([
             "titulo" => "required",
             "foto" => "required",
@@ -60,6 +86,68 @@ class ClienteController extends Controller
 
         $cliente->save();
 
+=======
+        try {
+            /* $user_id = auth()->user()->id; */
+            $user = User::find(1);
+            
+            $todolodemas = [];
+
+            if($user->puede($user,'cliente','c'))
+            {
+                DB::beginTransaction(); //IMPORTANTE AGREGAR
+        
+                // Si el request NO trae array
+                $request->validate([
+                    "titulo" => "required",
+                    "foto" => "required",
+                    "curp" => "required",
+                    "tipotelefono" => "required",
+                    "telefonocliente" => "required",
+                ]);
+
+                $recurso = new Cliente();
+                $recurso->titulo = $request->titulo;
+                $recurso->foto = $request->file('foto')->store('public');                $recurso->curp = $request->curp;
+                $recurso->tipotelefono = $request->tipotelefono;
+                $recurso->telefonocliente = $request->telefonocliente;
+                $recurso->save();
+
+                //Si request llega con un array
+                /* if($request->user){
+                    foreach($request->usuario as $usuario){
+                        $recurso = new User;
+                        $recurso->user_id = $usuario['user_id'];
+                        $recurso->username = $usuario['username'];
+                        $recurso->email = $usuario['email'];
+                        $recurso->password = $usuario['password'];
+                        $recurso->nombre = $usuario['nombre'];
+                        $recurso->apellidomaterno = $usuario['apellidomaterno'];
+                        $recurso->apellidopaterno = $usuario['apellidopaterno'];
+                        $recurso->telefonopersonal = $usuario['telefonopersonal'];
+                        $recurso->fechanacimiento = $usuario['fechanacimiento'];
+                        $recurso->edad = $usuario['edad'];
+                        $recurso->genero = $usuario['genero'];
+                        $recurso->save();
+                    }
+                } */
+          
+                DB::commit(); //SI HAY UN ERROR, NO AGREGA NINGUN DATO.
+                return (new Formatear)->igor($recurso,201,$todolodemas);
+            }
+        
+            else{
+                $todolodemas['error']['mensaje'] = 'No cuenta con los permisos para este recurso';
+                $todolodemas['error']['errores'] = ['permisos'=>['No cuenta con los permisos para este recurso']];
+                return (new Formatear)->igor(null,403,$todolodemas);
+            }
+        } catch (\Throwable $th) {
+            $todolodemas['error']['mensaje'] = 'Error en el servidor, ocurrió un error inesperado';
+            $todolodemas['error']['errores'] = ['errorinesperado'=>[$th]];
+            return (new Formatear)->igor(null,500,$todolodemas);
+        }
+        
+>>>>>>> b76975d56a7cf94ed4aa3019f747cf46cad05b43
         /*
         {
             "titulo" : "aqui va el documento del titulo",
@@ -70,12 +158,6 @@ class ClienteController extends Controller
         }
         */
 
-
-
-        return response([
-            "status" => 1,
-            "msg" =>"Cliente registrado"
-        ]);
     }
 
     /**

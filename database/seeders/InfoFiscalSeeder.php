@@ -30,7 +30,7 @@ class InfoFiscalSeeder extends Seeder
                 'nombrecolonia'=>'Bienestar Social',
                 'cp'=>'29088',
                 'cliente_id'=>1,
-                'ciudad_id'=>1,
+                'municipio_id'=>1,
                 
             ],
             [
@@ -45,7 +45,7 @@ class InfoFiscalSeeder extends Seeder
                 'nombrecolonia'=>'Pencil',
                 'cp'=>'20078',
                 'cliente_id'=>2,
-                'ciudad_id'=>2,
+                'municipio_id'=>2,
             ],
         ]);
     }

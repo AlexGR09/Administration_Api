@@ -11,35 +11,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use  HasApiTokens, SoftDeletes, HasFactory, Notifiable;
+    use  HasApiTokens, hasPermisos, SoftDeletes, HasFactory, Notifiable;
 
     protected $table = 'users';
     public $timestamps = false;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = array('username','email','password','nombre','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','ciudad_id','estado_id','pais_id','creadopor','actualizadopor');
+    protected $fillable = array('username','email','password','nombre','apellidopaterno','apellidomaterno','telefonopersonal','fechanacimiento','edad','genero','municipio_id','estado_id','pais_id','creadopor','actualizadopor');
 
-    public function RolUsuario(){
-        return $this->hasMany('App\Models\RolUsuario');
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role','role_user');
     }
 
-    public function Empleado(){
+    public function municipio(){
+        return $this->belongsTo('App\\Models\Municipio')->with('Estado');
+    }
+
+    public function empleado(){
         return $this->hasOne('App\Models\Empleado');
     }
 
-    public function Cliente(){
-        return $this->hasOne('App\Models\Cliente');
+    public function cliente(){
+        return $this->hasOne('App\\Models\Cliente')->with('InfoFiscal','ubicacion');
     }
 
-    public function Freelancer(){
+    public function freelancer(){
         return $this->hasOne('App\Models\Freelancer');
     }
 
-    public function CreadoPor(){
+    public function creadopor(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function ActualizadoPor(){
+    public function actualizadopor(){
         return $this->belongsTo('App\Models\User');
     }
 }

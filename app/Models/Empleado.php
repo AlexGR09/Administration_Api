@@ -16,7 +16,7 @@ class Empleado extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('user_id','creadopor','actualizadopor');
 
-    public function User(){
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 }

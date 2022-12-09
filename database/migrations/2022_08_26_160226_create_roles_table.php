@@ -15,7 +15,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->enum('rol',array('gerencia', 'administracion', 'contabilidad', 'ventas', 'cliente', 'root'));
+            $table->enum('rol',array('root', 'gerencia', 'administracion', 'contabilidad', 'ventas', 'cliente'));
             
             $table->unsignedBigInteger('creadopor_id')->nullable();
             $table->unsignedBigInteger('actualizadopor_id')->nullable();

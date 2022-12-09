@@ -16,7 +16,7 @@ class Reporte extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('fecha','montototal');
 
-    public function ReportePago(){
+    public function reportepago(){
         return $this->hasMany('App\Models\ReportePago');
     }
 }

@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PaisSeeder::class);
         $this->call(EstadoSeeder::class);
-        $this->call(CiudadSeeder::class);
+        $this->call(MunicipioSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(RolUsuariosSeeder::class);
@@ -34,5 +34,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ContenidoPaqueteSeeder::class);
         $this->call(UbicacionSeeder::class);
         $this->call(CaracteristicasUbicacionSeeder::class);
+        $this->call(PermisoSeeder::class);
+        $this->call(PermisionableSeeder::class);
+        $this->call(ClienteEspecialidadSeeder::class);
+        $this->call(InfoFiscalUbicacionSeeder::class);
     }
 }

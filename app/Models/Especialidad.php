@@ -16,7 +16,7 @@ class Especialidad extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('especialidad','creadopor','actualizadopor');
 
-    public function Cliente(){
-        return $this->belongsTo('App\Models\Cliente');
+    public function cliente(){
+        return $this->belongsToMany('App\Models\Cliente');
     }
 }

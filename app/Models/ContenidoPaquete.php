@@ -16,11 +16,11 @@ class ContenidoPaquete extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('descripcion','paquete_id','servicio_id','creadopor','actualizadopor');
 
-    public function Paquete(){
+    public function paquete(){
         return $this->hasOne('App\Models\Paquete');
     }
 
-    public function Servicio(){
+    public function servicio(){
         return $this->belongsTo('App\Models\Servicio');
     }
 }

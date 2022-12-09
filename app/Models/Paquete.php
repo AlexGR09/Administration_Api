@@ -16,11 +16,11 @@ class Paquete extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('nombrepaquete','costopaquete','');
 
-    public function Pago(){
+    public function pago(){
         return $this->hasMany('App\Models\Pago');
     }
 
-    public function Paquete(){
+    public function paquete(){
         return $this->belongsTo('App\Models\Paquete');
     }
 }

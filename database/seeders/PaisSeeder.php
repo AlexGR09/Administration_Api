@@ -15,28 +15,12 @@ class PaisSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
         DB::table('paises')->insert([
             [
                 'id'=>1,
                 'nombre'=>'México',
-            ],
-            [
-                'id'=>2,
-                'nombre'=>'Estados Unidos',
-            ],
-            [
-                'id'=>3,
-                'nombre'=>'Colombia',
-            ],
-            [
-                'id'=>4,
-                'nombre'=>'Guatemala',
-            ],
-            [
-                'id'=>5,
-                'nombre'=>'Cuba',
+                'short' => 'mx',
+                'phonecode' => 52,
             ],
         ]);
     }

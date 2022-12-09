@@ -16,7 +16,7 @@ class Servicio extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = array('nombreservicio','costoservicio','creadopor','actualizadopor');
 
-    public function ContenidoPaquete(){
+    public function contenidoPaquete(){
         return $this->hasMany('App\Models\ContenidoPaquete');
     }
 }
