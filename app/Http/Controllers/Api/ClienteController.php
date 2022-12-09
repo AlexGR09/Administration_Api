@@ -53,7 +53,7 @@ class ClienteController extends Controller
         $cliente = new Cliente();
         $cliente->user_id = $request->user_id;
         $cliente->titulo = $request->titulo;
-        $cliente->foto = $request->file('foto')->store('public');
+        $cliente->foto = $request->foto;
         $cliente->curp = $request->curp;
         $cliente->tipotelefono = $request->tipotelefono;
         $cliente->telefonocliente = $request->telefonocliente;
